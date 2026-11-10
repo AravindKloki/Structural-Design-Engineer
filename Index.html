@@ -262,7 +262,7 @@
               <div class="absolute bottom-2 left-2 z-10 w-4 h-4 border-b-2 border-l-2 border-sky-400 pointer-events-none"></div>
               <div class="absolute bottom-2 right-2 z-10 w-4 h-4 border-b-2 border-r-2 border-sky-400 pointer-events-none"></div>
               
-              <!-- Actual Profile Image -->
+              <!-- Profile Image with Fallback -->
               <div class="w-full h-80 sm:h-96 overflow-hidden rounded bg-slate-900 relative">
                 <img 
                   id="ProfileImg"
@@ -473,7 +473,7 @@
                   alt="Jacketed Column CAD Cross Section" 
                   onclick="openLightbox(this)"
                   class="w-full h-full object-contain hover:scale-105 transition-transform duration-300 cursor-pointer"
-                  onerror="this.parentElement.innerHTML='<div class=\'text-center p-6 text-slate-500 font-mono text-xs\'><i class=\'fa-solid fa-ruler-combined text-2xl mb-2 text-emerald-500/50 block\'></i>Upload <b>Jacket Column.png</b> to GitHub</div>'"
+                  onerror="this.parentElement.innerHTML='<div class=\'text-center p-6 text-slate-500 font-mono text-xs\'><i class=\'fa-solid fa-ruler-combined text-2xl mb-2 text-emerald-500/50 block\'></i>Upload <b>Jacket Column.jpg</b> to GitHub</div>'"
                 />
               </div>
 
@@ -577,12 +577,50 @@
                 alt="Reinforcement & Chemical Dowel Detailing" 
                 onclick="openLightbox(this)"
                 class="w-full h-full object-contain group-hover:scale-105 transition-transform cursor-pointer"
-                onerror="this.parentElement.innerHTML='<div class=\'p-3 text-center text-[10px] font-mono text-slate-500\'><i class=\'fa-solid fa-draw-polygon block text-lg mb-1 text-sky-400\'></i>Jacket Column.png</div>'"
+                onerror="this.parentElement.innerHTML='<div class=\'p-3 text-center text-[10px] font-mono text-slate-500\'><i class=\'fa-solid fa-draw-polygon block text-lg mb-1 text-sky-400\'></i>Jacket Column.jpg</div>'"
               />
             </div>
             <div class="mt-2 text-[11px] font-mono text-slate-300 font-semibold truncate">Dowel & Rebar Details</div>
             <div class="text-[10px] font-mono text-slate-500">16mm Rebar & Dowels</div>
           </div>
+        </div>
+      </div>
+
+      <!-- MANUAL CALCULATIONS & PDF DOWNLOAD BAR -->
+      <div class="cad-box p-5 rounded-lg border-l-4 border-l-amber-400 bg-gradient-to-r from-slate-900/90 to-slate-950 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="space-y-1 text-center sm:text-left">
+          <div class="text-[10px] font-mono uppercase tracking-widest text-amber-400 font-bold flex items-center justify-center sm:justify-start gap-2">
+            <i class="fa-solid fa-square-root-variable"></i>
+            IS 456:2000 Manual Calculation Report
+          </div>
+          <h3 class="text-base sm:text-lg font-bold text-white font-mono uppercase">
+            Slender Column Hand-Calculations & Derivations
+          </h3>
+          <p class="text-xs text-slate-300 max-w-xl font-sans">
+            Review step-by-step verification of unsupported length (Lu), major & minor slenderness ratios (kL/d), secondary moments (Ma), and biaxial capacity interaction.
+          </p>
+        </div>
+
+        <div class="flex flex-wrap items-center justify-center gap-3 shrink-0 font-mono text-xs">
+          <!-- Button 1: Opens the embedded PDF modal viewer -->
+          <button 
+            type="button" 
+            onclick="openManualCalcModal()" 
+            class="px-4 py-2.5 rounded bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold uppercase tracking-wider flex items-center gap-2 shadow-lg shadow-amber-950/60 transition-all hover:scale-105"
+          >
+            <i class="fa-solid fa-eye text-sm"></i>
+            <span>View Calculations</span>
+          </button>
+
+          <!-- Button 2: Direct Download button for Slender column Calculations.pdf -->
+          <a 
+            href="./Slender%20column%20Calculations.pdf" 
+            download="Slender_column_Calculations.pdf"
+            class="px-4 py-2.5 rounded bg-slate-900 hover:bg-slate-800 text-amber-300 border border-amber-500/60 font-semibold uppercase tracking-wider flex items-center gap-2 transition-all hover:border-amber-400"
+          >
+            <i class="fa-solid fa-download text-sm"></i>
+            <span>Download PDF</span>
+          </a>
         </div>
       </div>
 
@@ -635,61 +673,7 @@
         </table>
       </div>
     </section>
-<!-- MANUAL CALCULATIONS MODAL VIEWER WITH EMBEDDED PDF -->
-      <div id="manualCalcModal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-sm hidden items-center justify-center p-4">
-        <div class="cad-box max-w-5xl w-full max-h-[92vh] overflow-hidden rounded-xl shadow-2xl border-2 border-amber-400 flex flex-col bg-[#050c18]">
-          
-          <!-- Modal Header -->
-          <div class="flex items-center justify-between border-b border-blueprint-border p-4 bg-slate-950">
-            <div class="flex items-center gap-3">
-              <div class="w-8 h-8 rounded bg-amber-950 border border-amber-500/60 flex items-center justify-center text-amber-400">
-                <i class="fa-solid fa-file-pdf text-base"></i>
-              </div>
-              <div>
-                <div class="font-mono text-sm font-bold text-white uppercase">
-                  Slender Column Manual Calculations
-                </div>
-                <div class="text-[10px] font-mono text-slate-400">
-                  IS 456:2000 CODE VERIFICATION REPORT
-                </div>
-              </div>
-            </div>
-            
-            <div class="flex items-center gap-2">
-              <a 
-                href="./Slender%20column%20Calculations.pdf" 
-                download="Slender_column_Calculations.pdf"
-                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-amber-500 hover:bg-amber-400 text-slate-950 font-mono text-xs font-bold transition"
-              >
-                <i class="fa-solid fa-download"></i> Download PDF
-              </a>
-              <button onclick="closeManualCalcModal()" class="text-slate-400 hover:text-white p-1.5 text-lg">
-                <i class="fa-solid fa-xmark"></i>
-              </button>
-            </div>
-          </div>
 
-          <!-- Embedded PDF Viewer Frame -->
-          <div class="p-4 flex-1 h-[72vh] bg-[#071324]">
-            <iframe 
-              src="./Slender%20column%20Calculations.pdf" 
-              class="w-full h-full rounded border border-slate-700 bg-white"
-              frameborder="0">
-            </iframe>
-          </div>
-
-          <!-- Footer Bar -->
-          <div class="flex items-center justify-between p-3 border-t border-blueprint-border bg-slate-950 font-mono text-xs">
-            <span class="text-slate-400 text-[11px]">
-              * Hand-calculated and verified according to IS 456:2000 Clauses 25.2, 39.6 & 39.7.
-            </span>
-            <button onclick="closeManualCalcModal()" class="px-4 py-1.5 rounded bg-sky-600 hover:bg-sky-500 text-white font-semibold">
-              Close Viewer
-            </button>
-          </div>
-
-        </div>
-      </div>
     <!-- UNDERGRADUATE & INTERNSHIP PROJECTS -->
     <section id="projects" class="space-y-6">
       <div class="cad-box p-5 rounded-lg flex items-center justify-between">
@@ -1025,6 +1009,62 @@
     </div>
   </div>
 
+  <!-- MANUAL CALCULATIONS MODAL VIEWER WITH EMBEDDED PDF -->
+  <div id="manualCalcModal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="cad-box max-w-5xl w-full max-h-[92vh] overflow-hidden rounded-xl shadow-2xl border-2 border-amber-400 flex flex-col bg-[#050c18]">
+      
+      <!-- Modal Header -->
+      <div class="flex items-center justify-between border-b border-blueprint-border p-4 bg-slate-950">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded bg-amber-950 border border-amber-500/60 flex items-center justify-center text-amber-400">
+            <i class="fa-solid fa-file-pdf text-base"></i>
+          </div>
+          <div>
+            <div class="font-mono text-sm font-bold text-white uppercase">
+              Slender Column Manual Calculations
+            </div>
+            <div class="text-[10px] font-mono text-slate-400">
+              IS 456:2000 CODE VERIFICATION REPORT
+            </div>
+          </div>
+        </div>
+        
+        <div class="flex items-center gap-2">
+          <a 
+            href="./Slender%20column%20Calculations.pdf" 
+            download="Slender_column_Calculations.pdf"
+            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-amber-500 hover:bg-amber-400 text-slate-950 font-mono text-xs font-bold transition"
+          >
+            <i class="fa-solid fa-download"></i> Download PDF
+          </a>
+          <button onclick="closeManualCalcModal()" class="text-slate-400 hover:text-white p-1.5 text-lg">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Embedded PDF Viewer Frame -->
+      <div class="p-4 flex-1 h-[72vh] bg-[#071324]">
+        <iframe 
+          src="./Slender%20column%20Calculations.pdf" 
+          class="w-full h-full rounded border border-slate-700 bg-white"
+          frameborder="0">
+        </iframe>
+      </div>
+
+      <!-- Footer Bar -->
+      <div class="flex items-center justify-between p-3 border-t border-blueprint-border bg-slate-950 font-mono text-xs">
+        <span class="text-slate-400 text-[11px]">
+          * Hand-calculated and verified according to IS 456:2000 Clauses 25.2, 39.6 & 39.7.
+        </span>
+        <button onclick="closeManualCalcModal()" class="px-4 py-1.5 rounded bg-sky-600 hover:bg-sky-500 text-white font-semibold">
+          Close Viewer
+        </button>
+      </div>
+
+    </div>
+  </div>
+
   <!-- Interactive JavaScript logic -->
   <script>
     // Mobile navigation toggle
@@ -1047,6 +1087,23 @@
 
     function closeCalcModal() {
       const modal = document.getElementById('calcModal');
+      if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
+    }
+
+    // Modal dialog controls for Manual Calculation PDF
+    function openManualCalcModal() {
+      const modal = document.getElementById('manualCalcModal');
+      if (modal) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      }
+    }
+
+    function closeManualCalcModal() {
+      const modal = document.getElementById('manualCalcModal');
       if (modal) {
         modal.classList.add('hidden');
         modal.classList.remove('flex');
@@ -1080,6 +1137,7 @@
       if (e.key === 'Escape') {
         closeCalcModal();
         closeLightbox();
+        closeManualCalcModal();
       }
     });
   </script>
