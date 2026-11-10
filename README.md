@@ -1,6 +1,4 @@
 # Structural-Design-Engineer
-# Aravindan K | Structural Design Engineer Portfolio
-
 Personal portfolio website showcasing academic research, structural simulations, RC retrofitting case studies, and CAD/BIM detailing.
 
 🔗 **Live Website:** [https://your-site-name.netlify.app](https://your-site-name.netlify.app)
