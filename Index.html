@@ -422,46 +422,6 @@
                   <span class="text-rose-400 font-semibold">KL/d = 28.53 (Limit: 12)</span>
                 </div>
               </div>
-
-              <!-- SVG 3D Frame Isometric Diagram -->
-              <svg viewBox="0 0 460 230" class="w-full h-48 select-none" fill="none" stroke="currentColor">
-                <!-- Grid Foundation -->
-                <line x1="50" y1="180" x2="390" y2="180" stroke="#1e3a5f" stroke-width="1.5" stroke-dasharray="4 3"/>
-                <line x1="50" y1="180" x2="110" y2="140" stroke="#1e3a5f" stroke-width="1.2"/>
-                <line x1="390" y1="180" x2="430" y2="140" stroke="#1e3a5f" stroke-width="1.2"/>
-                <line x1="110" y1="140" x2="430" y2="140" stroke="#1e3a5f" stroke-width="1.2" stroke-dasharray="4 3"/>
-
-                <!-- Ground Columns -->
-                <line x1="100" y1="180" x2="100" y2="60" stroke="#22c55e" stroke-width="2"/>
-                <line x1="190" y1="180" x2="190" y2="60" stroke="#eab308" stroke-width="2"/>
-                
-                <!-- CRITICAL SLENDER COLUMN C7 (Red highlighted, double height due to removed 1st floor beam) -->
-                <line x1="280" y1="180" x2="280" y2="60" stroke="#ef4444" stroke-width="3.5" class="animate-pulse"/>
-                <circle cx="280" cy="120" r="4" fill="#ef4444" stroke="#ffffff" stroke-width="1.5"/>
-                <text x="290" y="125" fill="#f87171" font-size="11" font-family="JetBrains Mono" font-weight="700">C7 (Lu = 5.65m)</text>
-
-                <!-- Regular Column -->
-                <line x1="360" y1="180" x2="360" y2="60" stroke="#22c55e" stroke-width="2"/>
-
-                <!-- Floor Beams G+2 -->
-                <line x1="60" y1="140" x2="400" y2="140" stroke="#38bdf8" stroke-width="1.5"/>
-                <!-- Missing Beam Annotation at 1st floor between C7 -->
-                <line x1="190" y1="100" x2="280" y2="100" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="4 4"/>
-                <text x="205" y="93" fill="#f87171" font-size="9" font-family="JetBrains Mono">[BEAM REMOVED]</text>
-
-                <line x1="60" y1="60" x2="400" y2="60" stroke="#38bdf8" stroke-width="2"/>
-
-                <!-- P-Delta Deflection Wave -->
-                <path d="M 280 180 Q 294 120 280 60" fill="none" stroke="#f43f5e" stroke-width="1.5" stroke-dasharray="2 2"/>
-                <text x="298" y="150" fill="#fda4af" font-size="9" font-family="JetBrains Mono">&#916; Buckling Sway</text>
-              </svg>
-
-              <div class="mt-2 flex items-center justify-between text-[11px] font-mono text-slate-400 border-t border-slate-800 pt-2">
-                <span>Original Section: 230 x 300 mm</span>
-                <span class="text-rose-400 font-semibold">KL/d = 28.53 (Limit: 12)</span>
-              </div>
-            </div>
-
             <!-- Bullet Points -->
             <ul class="space-y-2.5 text-xs text-slate-300 font-sans">
               <li class="flex items-start gap-2">
@@ -491,7 +451,7 @@
           </div>
         </div>
 
-        <!-- Panel 2: Retrofitting & Modification (RC Jacketing Pass State) -->
+       <!-- Panel 2: Retrofitting & Modification (RC Jacketing Pass State) -->
         <div class="cad-box p-6 rounded-lg space-y-5 flex flex-col justify-between border-t-2 border-t-emerald-500/80">
           <div>
             <div class="flex items-center justify-between border-b border-blueprint-border pb-3 mb-4">
@@ -502,68 +462,29 @@
               <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-950/80 border border-emerald-800 text-emerald-300">STATUS: DESIGN PASS</span>
             </div>
 
-           <!-- Jacketed Column CAD Section Slot -->
-<div class="relative bg-slate-950 p-2 rounded border border-blueprint-border overflow-hidden group">
-  <div class="absolute top-3 right-3 z-10 text-[10px] font-mono text-emerald-400 bg-slate-900/90 px-2 py-0.5 rounded border border-emerald-700/50 backdrop-blur">
-    Cross-Section 380 x 380 mm
-  </div>
+            <!-- Jacketed Column CAD Section Image Slot -->
+            <div class="relative bg-slate-950 p-2 rounded border border-blueprint-border overflow-hidden group">
+              <div class="absolute top-3 right-3 z-10 text-[10px] font-mono text-emerald-400 bg-slate-900/90 px-2 py-0.5 rounded border border-emerald-700/50 backdrop-blur">
+                Cross-Section 380 x 380 mm
+              </div>
 
-            <!-- Image Slot: Upload 'jacketed-section.png' (Slide 30) to your GitHub repo -->
-            <div class="w-full h-56 sm:h-64 rounded overflow-hidden bg-[#040810] flex items-center justify-center border border-slate-800">
-              <img 
-                src="jacketed-section.png" 
-                alt="Jacketed Column CAD Cross Section" 
-                class="w-full h-full object-contain hover:scale-105 transition-transform duration-300"
-                onerror="this.parentElement.innerHTML='<div class=\'text-center p-6 text-slate-500 font-mono text-xs\'><i class=\'fa-solid fa-ruler-combined text-2xl mb-2 text-emerald-500/50 block\'></i>Upload <b>jacketed-section.png</b> to GitHub</div>'"
-              />
-            </div>
-          
-            <div class="mt-2 flex items-center justify-between text-[11px] font-mono text-slate-400 border-t border-slate-800/80 pt-2 px-1">
-              <span>Jacketing Concrete: M25 Grade</span>
-              <span class="text-emerald-400 font-semibold">Longitudinal Steel: 3,045 mm²</span>
-            </div>
-                <!-- Inner Existing Column 230x300 -->
-                <rect x="165" y="45" width="130" height="140" stroke="#38bdf8" stroke-width="2" stroke-dasharray="3 3" fill="#0b1b33" fill-opacity="0.5"/>
-                <text x="175" y="120" fill="#7dd3fc" font-size="10" font-family="JetBrains Mono">EXISTING 230x300</text>
+              <div class="w-full h-56 sm:h-64 rounded overflow-hidden bg-[#040810] flex items-center justify-center border border-slate-800">
+                <img 
+                  src="jacketed-section.png" 
+                  alt="Jacketed Column CAD Cross Section" 
+                  class="w-full h-full object-contain hover:scale-105 transition-transform duration-300"
+                  onerror="this.parentElement.innerHTML='<div class=\'text-center p-6 text-slate-500 font-mono text-xs\'><i class=\'fa-solid fa-ruler-combined text-2xl mb-2 text-emerald-500/50 block\'></i>Upload <b>jacketed-section.png</b> to GitHub</div>'"
+                />
+              </div>
 
-                <!-- Reinforcement Details -->
-                <!-- Existing Corner Bars (4-20mm) -->
-                <circle cx="180" cy="60" r="5" fill="#38bdf8"/>
-                <circle cx="280" cy="60" r="5" fill="#38bdf8"/>
-                <circle cx="180" cy="170" r="5" fill="#38bdf8"/>
-                <circle cx="280" cy="170" r="5" fill="#38bdf8"/>
-
-                <!-- New Jacketed Longitudinal Bars (Ø16mm Outer) -->
-                <circle cx="152" cy="37" r="5" fill="#4ade80"/>
-                <circle cx="230" cy="37" r="5" fill="#4ade80"/>
-                <circle cx="308" cy="37" r="5" fill="#4ade80"/>
-                <circle cx="152" cy="193" r="5" fill="#4ade80"/>
-                <circle cx="230" cy="193" r="5" fill="#4ade80"/>
-                <circle cx="308" cy="193" r="5" fill="#4ade80"/>
-                <circle cx="152" cy="115" r="5" fill="#4ade80"/>
-                <circle cx="308" cy="115" r="5" fill="#4ade80"/>
-
-                <!-- Shear Dowels Anchored into Core -->
-                <line x1="165" y1="85" x2="148" y2="85" stroke="#f59e0b" stroke-width="2"/>
-                <line x1="295" y1="85" x2="312" y2="85" stroke="#f59e0b" stroke-width="2"/>
-                <line x1="165" y1="145" x2="148" y2="145" stroke="#f59e0b" stroke-width="2"/>
-                <line x1="295" y1="145" x2="312" y2="145" stroke="#f59e0b" stroke-width="2"/>
-
-                <!-- Dimension lines -->
-                <line x1="130" y1="25" x2="130" y2="205" stroke="#64748b" stroke-width="1"/>
-                <text x="100" y="118" fill="#94a3b8" font-size="10" font-family="JetBrains Mono">380 mm</text>
-                <line x1="140" y1="215" x2="320" y2="215" stroke="#64748b" stroke-width="1"/>
-                <text x="210" y="226" fill="#94a3b8" font-size="10" font-family="JetBrains Mono">380 mm</text>
-              </svg>
-
-              <div class="mt-2 flex items-center justify-between text-[11px] font-mono text-slate-400 border-t border-slate-800 pt-2">
+              <div class="mt-2 flex items-center justify-between text-[11px] font-mono text-slate-400 border-t border-slate-800/80 pt-2 px-1">
                 <span>Jacketing Concrete: M25 Grade</span>
                 <span class="text-emerald-400 font-semibold">Longitudinal Steel: 3,045 mm²</span>
               </div>
             </div>
 
             <!-- Bullet Points -->
-            <ul class="space-y-2.5 text-xs text-slate-300 font-sans">
+            <ul class="space-y-2.5 text-xs text-slate-300 font-sans mt-4">
               <li class="flex items-start gap-2">
                 <i class="fa-solid fa-angle-right text-emerald-400 mt-1 text-xs"></i>
                 <span><strong>Encasement Engineering:</strong> Designed an integrated 380×380 mm reinforced concrete jacket utilizing 16mm longitudinal bars, 8mm lateral ties, and chemical shear dowels.</span>
