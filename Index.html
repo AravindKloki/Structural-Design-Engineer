@@ -613,6 +613,33 @@
           </button>
 
           <!-- Button 2: Direct Download button for Slender column Calculations.pdf -->
+          <!-- MANUAL CALCULATIONS & PDF DOWNLOAD BAR (VISIBLE BUTTONS) -->
+      <div class="cad-box p-5 rounded-lg border-l-4 border-l-amber-400 bg-gradient-to-r from-slate-900/90 to-slate-950 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="space-y-1 text-center sm:text-left">
+          <div class="text-[10px] font-mono uppercase tracking-widest text-amber-400 font-bold flex items-center justify-center sm:justify-start gap-2">
+            <i class="fa-solid fa-square-root-variable"></i>
+            IS 456:2000 Manual Calculation Report
+          </div>
+          <h3 class="text-base sm:text-lg font-bold text-white font-mono uppercase">
+            Slender Column Hand-Calculations & Derivations
+          </h3>
+          <p class="text-xs text-slate-300 max-w-xl font-sans">
+            Review step-by-step verification of unsupported length (Lu), major & minor slenderness ratios (kL/d), secondary moments (Ma), and biaxial capacity interaction.
+          </p>
+        </div>
+
+        <div class="flex flex-wrap items-center justify-center gap-3 shrink-0 font-mono text-xs">
+          <!-- Button 1: Opens the embedded PDF modal viewer -->
+          <button 
+            type="button" 
+            onclick="openManualCalcModal()" 
+            class="px-4 py-2.5 rounded bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold uppercase tracking-wider flex items-center gap-2 shadow-lg shadow-amber-950/60 transition-all hover:scale-105 cursor-pointer"
+          >
+            <i class="fa-solid fa-eye text-sm"></i>
+            <span>View Calculations</span>
+          </button>
+
+          <!-- Button 2: Direct Download button for Slender column Calculations.pdf -->
           <a 
             href="./Slender%20column%20Calculations.pdf" 
             download="Slender_column_Calculations.pdf"
