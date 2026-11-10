@@ -401,10 +401,26 @@
               <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-rose-950/80 border border-rose-800 text-rose-300">STATUS: OVERSTRESSED</span>
             </div>
 
-            <!-- Interactive SVG Vector Representation of 3D Frame & Critical C7 Column -->
-            <div class="relative bg-slate-950 p-4 rounded border border-blueprint-border overflow-hidden group">
-              <div class="absolute top-2 right-2 text-[10px] font-mono text-slate-400 bg-slate-900/90 px-2 py-0.5 rounded border border-slate-700">
-                P-M-M Interaction Demand
+            <!-- ETABS Frame 3D Model / Diagram Slot -->
+              <div class="relative bg-slate-950 p-2 rounded border border-blueprint-border overflow-hidden group">
+                <div class="absolute top-3 right-3 z-10 text-[10px] font-mono text-slate-300 bg-slate-900/90 px-2 py-0.5 rounded border border-slate-700 backdrop-blur">
+                  ETABS 3D FEA Analysis
+                </div>
+              
+                <!-- Image Slot: Upload 'etabs-frame.png' (Slide 14/15) to your GitHub repo -->
+                <div class="w-full h-56 sm:h-64 rounded overflow-hidden bg-[#040810] flex items-center justify-center border border-slate-800">
+                  <img 
+                    src="etabs-frame.png" 
+                    alt="ETABS Structural Modeling Frame Analysis" 
+                    class="w-full h-full object-contain hover:scale-105 transition-transform duration-300"
+                    onerror="this.parentElement.innerHTML='<div class=\'text-center p-6 text-slate-500 font-mono text-xs\'><i class=\'fa-solid fa-image text-2xl mb-2 text-sky-500/50 block\'></i>Upload <b>etabs-frame.png</b> to GitHub</div>'"
+                  />
+                </div>
+              
+                <div class="mt-2 flex items-center justify-between text-[11px] font-mono text-slate-400 border-t border-slate-800/80 pt-2 px-1">
+                  <span>Original Section: 230 x 300 mm</span>
+                  <span class="text-rose-400 font-semibold">KL/d = 28.53 (Limit: 12)</span>
+                </div>
               </div>
 
               <!-- SVG 3D Frame Isometric Diagram -->
@@ -486,12 +502,26 @@
               <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-950/80 border border-emerald-800 text-emerald-300">STATUS: DESIGN PASS</span>
             </div>
 
-            <!-- CAD Cross-Section Schematic of Column Jacketing -->
-            <div class="relative bg-slate-950 p-4 rounded border border-blueprint-border overflow-hidden">
-              <div class="absolute top-2 right-2 text-[10px] font-mono text-emerald-400 bg-slate-900/90 px-2 py-0.5 rounded border border-emerald-700/50">
-                Cross-Section 380 x 380 mm
-              </div>
+           <!-- Jacketed Column CAD Section Slot -->
+<div class="relative bg-slate-950 p-2 rounded border border-blueprint-border overflow-hidden group">
+  <div class="absolute top-3 right-3 z-10 text-[10px] font-mono text-emerald-400 bg-slate-900/90 px-2 py-0.5 rounded border border-emerald-700/50 backdrop-blur">
+    Cross-Section 380 x 380 mm
+  </div>
 
+            <!-- Image Slot: Upload 'jacketed-section.png' (Slide 30) to your GitHub repo -->
+            <div class="w-full h-56 sm:h-64 rounded overflow-hidden bg-[#040810] flex items-center justify-center border border-slate-800">
+              <img 
+                src="jacketed-section.png" 
+                alt="Jacketed Column CAD Cross Section" 
+                class="w-full h-full object-contain hover:scale-105 transition-transform duration-300"
+                onerror="this.parentElement.innerHTML='<div class=\'text-center p-6 text-slate-500 font-mono text-xs\'><i class=\'fa-solid fa-ruler-combined text-2xl mb-2 text-emerald-500/50 block\'></i>Upload <b>jacketed-section.png</b> to GitHub</div>'"
+              />
+            </div>
+          
+            <div class="mt-2 flex items-center justify-between text-[11px] font-mono text-slate-400 border-t border-slate-800/80 pt-2 px-1">
+              <span>Jacketing Concrete: M25 Grade</span>
+              <span class="text-emerald-400 font-semibold">Longitudinal Steel: 3,045 mm²</span>
+            </div>
               <!-- Vector CAD Drawing of Concrete Jacketing -->
               <svg viewBox="0 0 460 230" class="w-full h-48 select-none" fill="none">
                 <!-- Outer Jacketed Concrete Box 380x380 -->
@@ -567,6 +597,73 @@
         </div>
 
       </div>
+      <!-- DETAILED PROJECT DRAWINGS & SITE PHOTO GALLERY -->
+<div class="cad-box p-5 rounded-lg space-y-4">
+  <div class="flex items-center justify-between border-b border-blueprint-border pb-3">
+    <div class="text-xs font-mono text-sky-400 uppercase tracking-wider font-semibold flex items-center gap-2">
+      <i class="fa-solid fa-images"></i> Structural Drawings, On-Site Inspection & Output Curves
+    </div>
+    <span class="text-[10px] font-mono text-slate-400">4 PHOTO RECORDS</span>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+    <!-- Image 1: Site Photo -->
+    <div class="bg-slate-950 p-2 rounded border border-slate-800 group">
+      <div class="w-full h-40 rounded bg-slate-900 overflow-hidden flex items-center justify-center">
+        <img 
+          src="site-elevation.jpg" 
+          alt="Site G+2 Elevation" 
+          class="w-full h-full object-cover group-hover:scale-105 transition-transform"
+          onerror="this.parentElement.innerHTML='<div class=\'p-3 text-center text-[10px] font-mono text-slate-500\'><i class=\'fa-solid fa-camera block text-lg mb-1 text-sky-400\'></i>site-elevation.jpg<br>(Existing G+2 Site)</div>'"
+        />
+      </div>
+      <div class="mt-2 text-[11px] font-mono text-slate-300 font-semibold truncate">Existing G+2 Elevation</div>
+      <div class="text-[10px] font-mono text-slate-500">Site: Dharmapuri</div>
+    </div>
+
+    <!-- Image 2: Beam-Column AutoCAD Layout -->
+    <div class="bg-slate-950 p-2 rounded border border-slate-800 group">
+      <div class="w-full h-40 rounded bg-slate-900 overflow-hidden flex items-center justify-center">
+        <img 
+          src="cad-layout.png" 
+          alt="Structural Beam Column Plan" 
+          class="w-full h-full object-contain group-hover:scale-105 transition-transform"
+          onerror="this.parentElement.innerHTML='<div class=\'p-3 text-center text-[10px] font-mono text-slate-500\'><i class=\'fa-solid fa-pen-ruler block text-lg mb-1 text-sky-400\'></i>cad-layout.png<br>(AutoCAD Plan Layout)</div>'"
+        />
+      </div>
+      <div class="mt-2 text-[11px] font-mono text-slate-300 font-semibold truncate">Beam-Column Framing Plan</div>
+      <div class="text-[10px] font-mono text-slate-500">AutoCAD 2D Detailing</div>
+    </div>
+
+    <!-- Image 3: ETABS P-M-M 3D Surface -->
+    <div class="bg-slate-950 p-2 rounded border border-slate-800 group">
+      <div class="w-full h-40 rounded bg-slate-900 overflow-hidden flex items-center justify-center">
+        <img 
+          src="etabs-interaction.png" 
+          alt="P-M-M 3D Surface" 
+          class="w-full h-full object-contain group-hover:scale-105 transition-transform"
+          onerror="this.parentElement.innerHTML='<div class=\'p-3 text-center text-[10px] font-mono text-slate-500\'><i class=\'fa-solid fa-chart-line block text-lg mb-1 text-sky-400\'></i>etabs-interaction.png<br>(P-M-M Surface)</div>'"
+        />
+      </div>
+      <div class="mt-2 text-[11px] font-mono text-slate-300 font-semibold truncate">3D Interaction Surface</div>
+      <div class="text-[10px] font-mono text-slate-500">ETABS IS 456 Verification</div>
+    </div>
+
+    <!-- Image 4: Jacketed Reinforcement Detail -->
+    <div class="bg-slate-950 p-2 rounded border border-slate-800 group">
+      <div class="w-full h-40 rounded bg-slate-900 overflow-hidden flex items-center justify-center">
+        <img 
+          src="reinforcement-detail.png" 
+          alt="Jacket Reinforcement Detailing" 
+          class="w-full h-full object-contain group-hover:scale-105 transition-transform"
+          onerror="this.parentElement.innerHTML='<div class=\'p-3 text-center text-[10px] font-mono text-slate-500\'><i class=\'fa-solid fa-draw-polygon block text-lg mb-1 text-sky-400\'></i>reinforcement-detail.png<br>(Dowel & Tie Detailing)</div>'"
+        />
+      </div>
+      <div class="mt-2 text-[11px] font-mono text-slate-300 font-semibold truncate">Dowel & Rebar Details</div>
+      <div class="text-[10px] font-mono text-slate-500">16mm Rebar & Dowels</div>
+    </div>
+  </div>
+</div>
 
       <!-- Comparison Metrics Matrix -->
       <div class="cad-box p-5 rounded-lg overflow-x-auto">
