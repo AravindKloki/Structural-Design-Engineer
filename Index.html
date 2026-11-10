@@ -221,8 +221,8 @@
             <a href="#casestudy" class="px-5 py-2.5 rounded bg-sky-600 hover:bg-sky-500 text-white font-mono text-xs font-semibold uppercase tracking-wider flex items-center gap-2 shadow-lg shadow-sky-950 transition">
               <i class="fa-solid fa-cube"></i> Explore Case Study
             </a>
-            <button onclick="openCalcModal()" class="px-5 py-2.5 rounded bg-slate-900 hover:bg-slate-800 text-sky-300 border border-blueprint-border font-mono text-xs font-semibold uppercase tracking-wider flex items-center gap-2 transition">
-              <i class="fa-solid fa-calculator"></i> View ETABS Calculations
+            <button onclick="openCalcModal()" class="px-5 py-2.5 rounded bg-slate-900 hover:bg-slate-800 text-emerald-400 border border-emerald-800/80 hover:border-emerald-500 font-mono text-xs font-semibold uppercase tracking-wider flex items-center gap-2 transition">
+              <i class="fa-solid fa-file-excel"></i> View Calculation Sheet
             </button>
             <a href="https://www.linkedin.com/in/aravind-k-aa190a336" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 rounded bg-slate-900 hover:bg-slate-800 text-slate-300 border border-blueprint-border font-mono text-xs transition">
               <i class="fa-brands fa-linkedin text-sky-400 mr-1.5"></i> LinkedIn
@@ -257,23 +257,21 @@
 
             <!-- Crosshair Corners -->
             <div class="relative overflow-hidden rounded border border-sky-500/40 bg-slate-950 p-1 group">
-              <!-- Corner Crosshairs -->
               <div class="absolute top-2 left-2 z-10 w-4 h-4 border-t-2 border-l-2 border-sky-400 pointer-events-none"></div>
               <div class="absolute top-2 right-2 z-10 w-4 h-4 border-t-2 border-r-2 border-sky-400 pointer-events-none"></div>
               <div class="absolute bottom-2 left-2 z-10 w-4 h-4 border-b-2 border-l-2 border-sky-400 pointer-events-none"></div>
               <div class="absolute bottom-2 right-2 z-10 w-4 h-4 border-b-2 border-r-2 border-sky-400 pointer-events-none"></div>
               
-              <!-- Actual Profile Image with Fallback -->
+              <!-- Actual Profile Image -->
               <div class="w-full h-80 sm:h-96 overflow-hidden rounded bg-slate-900 relative">
-                <!-- WITH THIS: -->
                 <img 
                   id="ProfileImg"
-                  src="Profile img.jpeg"
+                  src="Profile img.jpeg" 
                   alt="Aravindan K - Structural Design Engineer" 
-                  class="w-full h-full object-cover object-top filter contrast-105 transition-transform duration-500 group-hover:scale-105"
+                  onclick="openLightbox(this)"
+                  class="w-full h-full object-cover object-top filter contrast-105 transition-transform duration-500 group-hover:scale-105 cursor-pointer"
                   onerror="this.src='Profile.png'"
                 />
-                <!-- Subtle Blueprint overlay lines on hover -->
                 <div class="absolute inset-0 bg-gradient-to-t from-[#060d17] via-transparent to-transparent opacity-80 pointer-events-none"></div>
                 <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-[10px] font-mono text-sky-300 bg-[#060d17]/80 px-2.5 py-1 rounded border border-sky-800/40 backdrop-blur-sm">
                   <span>PHOTO-ID: ARAVINDAN.K</span>
@@ -353,7 +351,7 @@
 
       </div>
 
-      <!-- Secondary Technical Tags (Exact from graphic) -->
+      <!-- Secondary Technical Tags -->
       <div class="pt-2 border-t border-blueprint-border flex flex-wrap items-center gap-2 text-xs font-mono">
         <span class="text-slate-400 text-[11px] uppercase mr-2"><i class="fa-solid fa-layer-group text-sky-400 mr-1"></i> Domains:</span>
         <span class="px-3 py-1 rounded bg-slate-900 border border-blueprint-border text-slate-200 hover:border-sky-500 transition">RC & Steel Design</span>
@@ -401,29 +399,30 @@
               <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-rose-950/80 border border-rose-800 text-rose-300">STATUS: OVERSTRESSED</span>
             </div>
 
-            <!-- ETABS Frame 3D Model / Diagram Slot -->
-              <div class="relative bg-slate-950 p-2 rounded border border-blueprint-border overflow-hidden group">
-                <div class="absolute top-3 right-3 z-10 text-[10px] font-mono text-slate-300 bg-slate-900/90 px-2 py-0.5 rounded border border-slate-700 backdrop-blur">
-                  ETABS 3D FEA Analysis
-                </div>
-              
-                <!-- Image Slot: Upload 'etabs-frame.png' (Slide 14/15) to your GitHub repo -->
-                <div class="w-full h-56 sm:h-64 rounded overflow-hidden bg-[#040810] flex items-center justify-center border border-slate-800">
-                  <img 
-                    src="etabs-frame.png" 
-                    alt="ETABS Structural Modeling Frame Analysis" 
-                    class="w-full h-full object-contain hover:scale-105 transition-transform duration-300"
-                    onerror="this.parentElement.innerHTML='<div class=\'text-center p-6 text-slate-500 font-mono text-xs\'><i class=\'fa-solid fa-image text-2xl mb-2 text-sky-500/50 block\'></i>Upload <b>etabs-frame.png</b> to GitHub</div>'"
-                  />
-                </div>
-              
-                <div class="mt-2 flex items-center justify-between text-[11px] font-mono text-slate-400 border-t border-slate-800/80 pt-2 px-1">
-                  <span>Original Section: 230 x 300 mm</span>
-                  <span class="text-rose-400 font-semibold">KL/d = 28.53 (Limit: 12)</span>
-                </div>
+            <!-- ETABS Frame 3D Model Image Slot -->
+            <div class="relative bg-slate-950 p-2 rounded border border-blueprint-border overflow-hidden group">
+              <div class="absolute top-3 right-3 z-10 text-[10px] font-mono text-slate-300 bg-slate-900/90 px-2 py-0.5 rounded border border-slate-700 backdrop-blur">
+                ETABS 3D FEA Analysis
               </div>
+              
+              <div class="w-full h-56 sm:h-64 rounded overflow-hidden bg-[#040810] flex items-center justify-center border border-slate-800">
+                <img 
+                  src="Etabs - Frame.png" 
+                  alt="ETABS Structural Modeling Frame Analysis" 
+                  onclick="openLightbox(this)"
+                  class="w-full h-full object-contain hover:scale-105 transition-transform duration-300 cursor-pointer"
+                  onerror="this.parentElement.innerHTML='<div class=\'text-center p-6 text-slate-500 font-mono text-xs\'><i class=\'fa-solid fa-image text-2xl mb-2 text-sky-500/50 block\'></i>Upload <b>Etabs - Frame.png</b> to GitHub</div>'"
+                />
+              </div>
+              
+              <div class="mt-2 flex items-center justify-between text-[11px] font-mono text-slate-400 border-t border-slate-800/80 pt-2 px-1">
+                <span>Original Section: 230 x 300 mm</span>
+                <span class="text-rose-400 font-semibold">KL/d = 28.53 (Limit: 12)</span>
+              </div>
+            </div>
+
             <!-- Bullet Points -->
-            <ul class="space-y-2.5 text-xs text-slate-300 font-sans">
+            <ul class="space-y-2.5 text-xs text-slate-300 font-sans mt-4">
               <li class="flex items-start gap-2">
                 <i class="fa-solid fa-angle-right text-sky-400 mt-1 text-xs"></i>
                 <span><strong>Altered Load Transfer:</strong> Analysed critical behavior of slender C7 column (230×300 mm) subjected to doubled unsupported length (6.10m total) following beam removal in G+2 frame.</span>
@@ -451,7 +450,7 @@
           </div>
         </div>
 
-       <!-- Panel 2: Retrofitting & Modification (RC Jacketing Pass State) -->
+        <!-- Panel 2: Retrofitting & Modification (RC Jacketing Pass State) -->
         <div class="cad-box p-6 rounded-lg space-y-5 flex flex-col justify-between border-t-2 border-t-emerald-500/80">
           <div>
             <div class="flex items-center justify-between border-b border-blueprint-border pb-3 mb-4">
@@ -470,10 +469,11 @@
 
               <div class="w-full h-56 sm:h-64 rounded overflow-hidden bg-[#040810] flex items-center justify-center border border-slate-800">
                 <img 
-                  src="jacketed-section.png" 
+                  src="Jacket Column.png" 
                   alt="Jacketed Column CAD Cross Section" 
-                  class="w-full h-full object-contain hover:scale-105 transition-transform duration-300"
-                  onerror="this.parentElement.innerHTML='<div class=\'text-center p-6 text-slate-500 font-mono text-xs\'><i class=\'fa-solid fa-ruler-combined text-2xl mb-2 text-emerald-500/50 block\'></i>Upload <b>jacketed-section.png</b> to GitHub</div>'"
+                  onclick="openLightbox(this)"
+                  class="w-full h-full object-contain hover:scale-105 transition-transform duration-300 cursor-pointer"
+                  onerror="this.parentElement.innerHTML='<div class=\'text-center p-6 text-slate-500 font-mono text-xs\'><i class=\'fa-solid fa-ruler-combined text-2xl mb-2 text-emerald-500/50 block\'></i>Upload <b>Jacket Column.png</b> to GitHub</div>'"
                 />
               </div>
 
@@ -513,73 +513,78 @@
         </div>
 
       </div>
+
       <!-- DETAILED PROJECT DRAWINGS & SITE PHOTO GALLERY -->
-<div class="cad-box p-5 rounded-lg space-y-4">
-  <div class="flex items-center justify-between border-b border-blueprint-border pb-3">
-    <div class="text-xs font-mono text-sky-400 uppercase tracking-wider font-semibold flex items-center gap-2">
-      <i class="fa-solid fa-images"></i> Structural Drawings, On-Site Inspection & Output Curves
-    </div>
-    <span class="text-[10px] font-mono text-slate-400">4 PHOTO RECORDS</span>
-  </div>
+      <div class="cad-box p-5 rounded-lg space-y-4">
+        <div class="flex items-center justify-between border-b border-blueprint-border pb-3">
+          <div class="text-xs font-mono text-sky-400 uppercase tracking-wider font-semibold flex items-center gap-2">
+            <i class="fa-solid fa-images"></i> Structural Drawings, On-Site Inspection & Output Curves
+          </div>
+          <span class="text-[10px] font-mono text-slate-400">4 PHOTO RECORDS</span>
+        </div>
 
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-    <!-- Image 1: Site Photo -->
-    <div class="bg-slate-950 p-2 rounded border border-slate-800 group">
-      <div class="w-full h-40 rounded bg-slate-900 overflow-hidden flex items-center justify-center">
-        <img 
-          src="site-elevation.jpg" 
-          alt="Site G+2 Elevation" 
-          class="w-full h-full object-cover group-hover:scale-105 transition-transform"
-          onerror="this.parentElement.innerHTML='<div class=\'p-3 text-center text-[10px] font-mono text-slate-500\'><i class=\'fa-solid fa-camera block text-lg mb-1 text-sky-400\'></i>site-elevation.jpg<br>(Existing G+2 Site)</div>'"
-        />
-      </div>
-      <div class="mt-2 text-[11px] font-mono text-slate-300 font-semibold truncate">Existing G+2 Elevation</div>
-      <div class="text-[10px] font-mono text-slate-500">Site: Dharmapuri</div>
-    </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <!-- Image 1: Site Photo -->
+          <div class="bg-slate-950 p-2 rounded border border-slate-800 group">
+            <div class="w-full h-40 rounded bg-slate-900 overflow-hidden flex items-center justify-center">
+              <img 
+                src="Existing Building.jpeg" 
+                alt="Existing G+2 Site Building Elevation - Dharmapuri" 
+                onclick="openLightbox(this)"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform cursor-pointer"
+                onerror="this.parentElement.innerHTML='<div class=\'p-3 text-center text-[10px] font-mono text-slate-500\'><i class=\'fa-solid fa-camera block text-lg mb-1 text-sky-400\'></i>Existing Building.jpeg</div>'"
+              />
+            </div>
+            <div class="mt-2 text-[11px] font-mono text-slate-300 font-semibold truncate">Existing G+2 Elevation</div>
+            <div class="text-[10px] font-mono text-slate-500">Site: Dharmapuri</div>
+          </div>
 
-    <!-- Image 2: Beam-Column AutoCAD Layout -->
-    <div class="bg-slate-950 p-2 rounded border border-slate-800 group">
-      <div class="w-full h-40 rounded bg-slate-900 overflow-hidden flex items-center justify-center">
-        <img 
-          src="cad-layout.png" 
-          alt="Structural Beam Column Plan" 
-          class="w-full h-full object-contain group-hover:scale-105 transition-transform"
-          onerror="this.parentElement.innerHTML='<div class=\'p-3 text-center text-[10px] font-mono text-slate-500\'><i class=\'fa-solid fa-pen-ruler block text-lg mb-1 text-sky-400\'></i>cad-layout.png<br>(AutoCAD Plan Layout)</div>'"
-        />
-      </div>
-      <div class="mt-2 text-[11px] font-mono text-slate-300 font-semibold truncate">Beam-Column Framing Plan</div>
-      <div class="text-[10px] font-mono text-slate-500">AutoCAD 2D Detailing</div>
-    </div>
+          <!-- Image 2: Beam-Column AutoCAD Layout -->
+          <div class="bg-slate-950 p-2 rounded border border-slate-800 group">
+            <div class="w-full h-40 rounded bg-slate-900 overflow-hidden flex items-center justify-center">
+              <img 
+                src="Beam - Column Framing.jpg" 
+                alt="Beam-Column Framing Plan Layout" 
+                onclick="openLightbox(this)"
+                class="w-full h-full object-contain group-hover:scale-105 transition-transform cursor-pointer"
+                onerror="this.parentElement.innerHTML='<div class=\'p-3 text-center text-[10px] font-mono text-slate-500\'><i class=\'fa-solid fa-pen-ruler block text-lg mb-1 text-sky-400\'></i>Beam - Column Framing.jpg</div>'"
+              />
+            </div>
+            <div class="mt-2 text-[11px] font-mono text-slate-300 font-semibold truncate">Beam-Column Framing Plan</div>
+            <div class="text-[10px] font-mono text-slate-500">AutoCAD 2D Detailing</div>
+          </div>
 
-    <!-- Image 3: ETABS P-M-M 3D Surface -->
-    <div class="bg-slate-950 p-2 rounded border border-slate-800 group">
-      <div class="w-full h-40 rounded bg-slate-900 overflow-hidden flex items-center justify-center">
-        <img 
-          src="etabs-interaction.png" 
-          alt="P-M-M 3D Surface" 
-          class="w-full h-full object-contain group-hover:scale-105 transition-transform"
-          onerror="this.parentElement.innerHTML='<div class=\'p-3 text-center text-[10px] font-mono text-slate-500\'><i class=\'fa-solid fa-chart-line block text-lg mb-1 text-sky-400\'></i>etabs-interaction.png<br>(P-M-M Surface)</div>'"
-        />
-      </div>
-      <div class="mt-2 text-[11px] font-mono text-slate-300 font-semibold truncate">3D Interaction Surface</div>
-      <div class="text-[10px] font-mono text-slate-500">ETABS IS 456 Verification</div>
-    </div>
+          <!-- Image 3: ETABS P-M-M 3D Surface -->
+          <div class="bg-slate-950 p-2 rounded border border-slate-800 group">
+            <div class="w-full h-40 rounded bg-slate-900 overflow-hidden flex items-center justify-center">
+              <img 
+                src="Interaction.png" 
+                alt="ETABS P-M-M 3D Interaction Surface Check" 
+                onclick="openLightbox(this)"
+                class="w-full h-full object-contain group-hover:scale-105 transition-transform cursor-pointer"
+                onerror="this.parentElement.innerHTML='<div class=\'p-3 text-center text-[10px] font-mono text-slate-500\'><i class=\'fa-solid fa-chart-line block text-lg mb-1 text-sky-400\'></i>Interaction.png</div>'"
+              />
+            </div>
+            <div class="mt-2 text-[11px] font-mono text-slate-300 font-semibold truncate">3D Interaction Surface</div>
+            <div class="text-[10px] font-mono text-slate-500">ETABS IS 456 Verification</div>
+          </div>
 
-    <!-- Image 4: Jacketed Reinforcement Detail -->
-    <div class="bg-slate-950 p-2 rounded border border-slate-800 group">
-      <div class="w-full h-40 rounded bg-slate-900 overflow-hidden flex items-center justify-center">
-        <img 
-          src="reinforcement-detail.png" 
-          alt="Jacket Reinforcement Detailing" 
-          class="w-full h-full object-contain group-hover:scale-105 transition-transform"
-          onerror="this.parentElement.innerHTML='<div class=\'p-3 text-center text-[10px] font-mono text-slate-500\'><i class=\'fa-solid fa-draw-polygon block text-lg mb-1 text-sky-400\'></i>reinforcement-detail.png<br>(Dowel & Tie Detailing)</div>'"
-        />
+          <!-- Image 4: Jacketed Reinforcement Detail -->
+          <div class="bg-slate-950 p-2 rounded border border-slate-800 group">
+            <div class="w-full h-40 rounded bg-slate-900 overflow-hidden flex items-center justify-center">
+              <img 
+                src="Jacket Column.png" 
+                alt="Reinforcement & Chemical Dowel Detailing" 
+                onclick="openLightbox(this)"
+                class="w-full h-full object-contain group-hover:scale-105 transition-transform cursor-pointer"
+                onerror="this.parentElement.innerHTML='<div class=\'p-3 text-center text-[10px] font-mono text-slate-500\'><i class=\'fa-solid fa-draw-polygon block text-lg mb-1 text-sky-400\'></i>Jacket Column.png</div>'"
+              />
+            </div>
+            <div class="mt-2 text-[11px] font-mono text-slate-300 font-semibold truncate">Dowel & Rebar Details</div>
+            <div class="text-[10px] font-mono text-slate-500">16mm Rebar & Dowels</div>
+          </div>
+        </div>
       </div>
-      <div class="mt-2 text-[11px] font-mono text-slate-300 font-semibold truncate">Dowel & Rebar Details</div>
-      <div class="text-[10px] font-mono text-slate-500">16mm Rebar & Dowels</div>
-    </div>
-  </div>
-</div>
 
       <!-- Comparison Metrics Matrix -->
       <div class="cad-box p-5 rounded-lg overflow-x-auto">
@@ -893,8 +898,8 @@
       <a href="https://www.linkedin.com/in/aravind-k-aa190a336" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded bg-slate-900 hover:bg-slate-800 text-sky-400 border border-blueprint-border transition flex items-center gap-1.5">
         <i class="fa-brands fa-linkedin text-[11px]"></i> <span>LinkedIn</span>
       </a>
-      <button onclick="openCalcModal()" class="px-3 py-1.5 rounded bg-slate-900 hover:bg-slate-800 text-slate-200 border border-blueprint-border transition flex items-center gap-1.5">
-        <i class="fa-solid fa-file-pdf text-[11px] text-amber-400"></i> <span>Data Sheet</span>
+      <button onclick="openCalcModal()" class="px-3 py-1.5 rounded bg-slate-900 hover:bg-slate-800 text-emerald-400 border border-emerald-800/80 hover:border-emerald-500 transition flex items-center gap-1.5">
+        <i class="fa-solid fa-file-excel text-[11px]"></i> <span>Calc Sheet</span>
       </button>
       <a href="tel:+916385778972" class="px-3 py-1.5 rounded bg-slate-900 hover:bg-slate-800 text-slate-200 border border-blueprint-border transition flex items-center gap-1.5">
         <i class="fa-solid fa-phone text-[11px]"></i> <span>Call</span>
@@ -902,57 +907,67 @@
     </div>
   </aside>
 
-  <!-- CALCULATION & REPORT MODAL DIALOG -->
-  <div id="calcModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4">
-    <div class="cad-box max-w-2xl w-full max-h-[85vh] overflow-y-auto p-6 rounded-lg space-y-4 shadow-2xl border-2 border-sky-500">
-      <div class="flex items-center justify-between border-b border-blueprint-border pb-3">
-        <div class="font-mono text-sm font-bold text-sky-400 uppercase">
-          ETABS P-M-M INTERACTION VERIFICATION REPORT
+  <!-- FULLSCREEN IMAGE LIGHTBOX MODAL -->
+  <div id="imageLightbox" onclick="closeLightbox()" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden items-center justify-center p-4 cursor-pointer transition-opacity">
+    <div class="relative max-w-5xl w-full max-h-[92vh] flex flex-col items-center justify-center" onclick="event.stopPropagation()">
+      <button onclick="closeLightbox()" class="absolute -top-10 right-0 text-slate-300 hover:text-white font-mono text-sm flex items-center gap-1.5 px-3 py-1 bg-slate-900/80 rounded border border-slate-700">
+        <i class="fa-solid fa-xmark"></i> Close [ESC]
+      </button>
+      <img id="lightboxImg" src="" alt="Enlarged View" class="max-h-[82vh] max-w-full rounded border-2 border-sky-500/80 object-contain shadow-2xl bg-slate-950" />
+      <div id="lightboxCaption" class="mt-3 font-mono text-xs text-sky-300 bg-slate-900/90 px-4 py-1.5 rounded border border-slate-700 text-center"></div>
+    </div>
+  </div>
+
+  <!-- EXCEL / STRUCTURAL DATA SHEET MODAL -->
+  <div id="calcModal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="cad-box max-w-5xl w-full max-h-[92vh] overflow-hidden rounded-xl shadow-2xl border-2 border-sky-500 flex flex-col bg-[#050c18]">
+      
+      <!-- Modal Header -->
+      <div class="flex items-center justify-between border-b border-blueprint-border p-4 bg-slate-950">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded bg-emerald-950 border border-emerald-500/60 flex items-center justify-center text-emerald-400">
+            <i class="fa-solid fa-file-excel text-base"></i>
+          </div>
+          <div>
+            <div class="font-mono text-sm font-bold text-white uppercase">
+              Structural Design & Calculation Workbook
+            </div>
+            <div class="text-[10px] font-mono text-slate-400">
+              LIVE PREVIEW &bull; IS 456:2000 CODE DESIGN CHECKS
+            </div>
+          </div>
         </div>
-        <button onclick="closeCalcModal()" class="text-slate-400 hover:text-white p-1 text-lg">
-          <i class="fa-solid fa-xmark"></i>
+        
+        <div class="flex items-center gap-2">
+          <!-- Direct Link to open full sheet in a new tab -->
+          <a href="https://docs.google.com/spreadsheets/d/1nMRgvDw16BbJVCWvC__EEfaVyYlZB2O7/edit?usp=sharing" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-emerald-600 hover:bg-emerald-500 text-white font-mono text-xs font-semibold transition">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> Open Full Sheet
+          </a>
+          <button onclick="closeCalcModal()" class="text-slate-400 hover:text-white p-1.5 text-lg">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Embedded Interactive Sheet Frame -->
+      <div class="p-4 flex-1 h-[68vh] bg-[#071324]">
+        <iframe 
+          src="https://docs.google.com/spreadsheets/d/1nMRgvDw16BbJVCWvC__EEfaVyYlZB2O7/preview" 
+          class="w-full h-full rounded border border-slate-700 bg-white"
+          frameborder="0">
+        </iframe>
+      </div>
+
+      <!-- Footer Bar -->
+      <div class="flex items-center justify-between p-3 border-t border-blueprint-border bg-slate-950 font-mono text-xs">
+        <span class="text-slate-400 text-[11px]">
+          * Click "Open Full Sheet" above to view all formulas and full calculations in Google Sheets.
+        </span>
+        <button onclick="closeCalcModal()" class="px-4 py-1.5 rounded bg-sky-600 hover:bg-sky-500 text-white font-semibold">
+          Close
         </button>
       </div>
 
-      <div class="space-y-3 font-mono text-xs text-slate-300">
-        <div class="p-3 bg-slate-950 rounded border border-slate-800">
-          <div class="text-sky-300 font-bold mb-1">Governing Check Formula (IS 456:2000 Cl. 39.6):</div>
-          <div class="p-2 bg-slate-900 rounded text-center text-amber-300 my-2">
-            [Mux / Mux1]^&alpha;n + [Muy / Muy1]^&alpha;n &le; 1.0
-          </div>
-          <p class="text-slate-400 text-[11px]">Where &alpha;n is related to Pu / Puz, and Puz = 0.45 fck.Ac + 0.75 fy.Asc</p>
-        </div>
-
-        <div class="grid grid-cols-2 gap-3">
-          <div class="p-3 bg-rose-950/30 border border-rose-800 rounded">
-            <div class="text-rose-400 font-bold mb-1">Before Modification (C7):</div>
-            <div>&bull; Section: 230 x 300 mm</div>
-            <div>&bull; Length Lu: 5650 mm</div>
-            <div>&bull; Major kL/D: 28.53 (> 12)</div>
-            <div>&bull; Pu: 536.84 kN | Mu3: 52.28 kNm</div>
-            <div class="font-bold text-rose-400 mt-1">&bull; Capacity Ratio: 1.179 [OVERSTRESSED]</div>
-          </div>
-
-          <div class="p-3 bg-emerald-950/30 border border-emerald-800 rounded">
-            <div class="text-emerald-400 font-bold mb-1">After Jacketing (C7-R):</div>
-            <div>&bull; Section: 380 x 380 mm</div>
-            <div>&bull; Longitudinal Area: 3,045 mm²</div>
-            <div>&bull; Major kL/D: 9.63 (< 12)</div>
-            <div>&bull; Pu: 628.54 kN | Mu3: 165.64 kNm</div>
-            <div class="font-bold text-emerald-400 mt-1">&bull; Capacity Ratio: 0.986 [PASS]</div>
-          </div>
-        </div>
-
-        <p class="text-[11px] text-slate-400 leading-relaxed">
-          Conclusion: The 380x380 mm RC column jacket restores adequate structural stiffness, reduces lateral deflection, and successfully brings the interaction demand safely below the 1.0 limit in accordance with standard civil engineering practice.
-        </p>
-      </div>
-
-      <div class="flex justify-end pt-2 border-t border-blueprint-border">
-        <button onclick="closeCalcModal()" class="px-4 py-2 rounded bg-sky-600 hover:bg-sky-500 text-white text-xs font-mono font-semibold">
-          Close Report
-        </button>
-      </div>
     </div>
   </div>
 
@@ -967,7 +982,7 @@
       });
     }
 
-    // Modal dialog controls
+    // Modal dialog controls for Calculation Sheet
     function openCalcModal() {
       const modal = document.getElementById('calcModal');
       if (modal) {
@@ -984,9 +999,34 @@
       }
     }
 
-    // Close modal on escape key
+    // Image Fullscreen Lightbox Controls
+    function openLightbox(imgElement) {
+      const lightbox = document.getElementById('imageLightbox');
+      const lightboxImg = document.getElementById('lightboxImg');
+      const lightboxCaption = document.getElementById('lightboxCaption');
+      
+      if (lightbox && lightboxImg && imgElement) {
+        lightboxImg.src = imgElement.src;
+        lightboxCaption.textContent = imgElement.alt || "Engineering Drawing / Structural Output";
+        lightbox.classList.remove('hidden');
+        lightbox.classList.add('flex');
+      }
+    }
+
+    function closeLightbox() {
+      const lightbox = document.getElementById('imageLightbox');
+      if (lightbox) {
+        lightbox.classList.add('hidden');
+        lightbox.classList.remove('flex');
+      }
+    }
+
+    // Close on escape key
     window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeCalcModal();
+      if (e.key === 'Escape') {
+        closeCalcModal();
+        closeLightbox();
+      }
     });
   </script>
 </body>
