@@ -635,7 +635,61 @@
         </table>
       </div>
     </section>
+<!-- MANUAL CALCULATIONS MODAL VIEWER WITH EMBEDDED PDF -->
+      <div id="manualCalcModal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="cad-box max-w-5xl w-full max-h-[92vh] overflow-hidden rounded-xl shadow-2xl border-2 border-amber-400 flex flex-col bg-[#050c18]">
+          
+          <!-- Modal Header -->
+          <div class="flex items-center justify-between border-b border-blueprint-border p-4 bg-slate-950">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded bg-amber-950 border border-amber-500/60 flex items-center justify-center text-amber-400">
+                <i class="fa-solid fa-file-pdf text-base"></i>
+              </div>
+              <div>
+                <div class="font-mono text-sm font-bold text-white uppercase">
+                  Slender Column Manual Calculations
+                </div>
+                <div class="text-[10px] font-mono text-slate-400">
+                  IS 456:2000 CODE VERIFICATION REPORT
+                </div>
+              </div>
+            </div>
+            
+            <div class="flex items-center gap-2">
+              <a 
+                href="./Slender%20column%20Calculations.pdf" 
+                download="Slender_column_Calculations.pdf"
+                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-amber-500 hover:bg-amber-400 text-slate-950 font-mono text-xs font-bold transition"
+              >
+                <i class="fa-solid fa-download"></i> Download PDF
+              </a>
+              <button onclick="closeManualCalcModal()" class="text-slate-400 hover:text-white p-1.5 text-lg">
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </div>
+          </div>
 
+          <!-- Embedded PDF Viewer Frame -->
+          <div class="p-4 flex-1 h-[72vh] bg-[#071324]">
+            <iframe 
+              src="./Slender%20column%20Calculations.pdf" 
+              class="w-full h-full rounded border border-slate-700 bg-white"
+              frameborder="0">
+            </iframe>
+          </div>
+
+          <!-- Footer Bar -->
+          <div class="flex items-center justify-between p-3 border-t border-blueprint-border bg-slate-950 font-mono text-xs">
+            <span class="text-slate-400 text-[11px]">
+              * Hand-calculated and verified according to IS 456:2000 Clauses 25.2, 39.6 & 39.7.
+            </span>
+            <button onclick="closeManualCalcModal()" class="px-4 py-1.5 rounded bg-sky-600 hover:bg-sky-500 text-white font-semibold">
+              Close Viewer
+            </button>
+          </div>
+
+        </div>
+      </div>
     <!-- UNDERGRADUATE & INTERNSHIP PROJECTS -->
     <section id="projects" class="space-y-6">
       <div class="cad-box p-5 rounded-lg flex items-center justify-between">
