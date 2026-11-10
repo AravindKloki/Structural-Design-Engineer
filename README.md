@@ -1,7 +1,7 @@
 # Structural-Design-Engineer
 Personal portfolio website showcasing academic research, structural simulations, RC retrofitting case studies, and CAD/BIM detailing.
 
-🔗 **Live Website:** [[https://your-site-name.netlify.app](https://your-site-name.netlify.app](https://aravind-structural-design-engineer.netlify.app)
+🔗 **Live Website:** [https://aravind-structural-design-engineer.netlify.app]
 
 ---
 
