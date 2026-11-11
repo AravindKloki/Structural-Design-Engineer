@@ -119,11 +119,11 @@
       min-height: 480px;
       max-height: 720px;
       margin-bottom: 34vh;
-      border-radius: 14px;
+      border-radius: 12px;
       overflow: hidden;
-      background: #ffffff;
-      border: 1px solid #334155;
-      box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.5);
+      background: #081426; /* Dark blueprint base */
+      border: 1px solid #1c365a; /* Matching card border from Image 2 */
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.75);
       transform-origin: 50% 0;
       transition: transform 0.1s ease-out;
     }
@@ -140,38 +140,39 @@
       transition: opacity 0.1s ease-out;
     }
     .tab {
-      height: 32px;
+      height: 34px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 0 1.25rem;
       background: var(--c);
       color: #ffffff;
-      font: 600 12px 'JetBrains Mono', monospace;
+      font: 700 12px 'JetBrains Mono', monospace;
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+      border-bottom: 1px solid rgba(56, 189, 248, 0.25);
     }
     .card-body {
-      height: calc(100% - 32px);
+      height: calc(100% - 34px);
       overflow-y: auto;
       padding: 1.25rem;
-      color: #0f172a;
-      background: #ffffff;
+      color: #cbd5e1; /* Soft slate text */
+      background: #071324; /* Deep navy blueprint background */
     }
+
     @media (max-width: 768px) {
       .card {
         height: calc(100svh - 180px);
-        min-height: 440px;
+        min-height: 460px;
         margin-bottom: 25vh;
       }
       .tab {
-        height: 28px;
+        height: 30px;
         font-size: 10px;
         padding: 0 0.75rem;
       }
       .card-body {
-        height: calc(100% - 28px);
+        height: calc(100% - 30px);
         padding: 0.85rem;
       }
     }
@@ -180,6 +181,7 @@
         transition: none !important;
       }
     }
+    
   </style>
 </head>
 <body class="text-slate-200 font-sans antialiased min-h-screen relative flex flex-col justify-between selection:bg-sky-500 selection:text-white pb-24">
@@ -199,7 +201,7 @@
           </div>
           <div class="flex items-center gap-2 text-[10px] text-slate-400 font-mono tracking-wider">
             <span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-            SRMIST INSTITUTE OF SCIENCE & TECHNOLOGY &bull;
+            SRMIST INSTITUTE OF SCIENCE & TECHNOLOGY 
           </div>
         </div>
       </div>
@@ -781,43 +783,31 @@
     </section>
 
     <!-- ===== STACKING DECK SIMULATION SECTION ===== -->
-    <section id="simulation" class="space-y-6">
-      <div class="cad-box p-5 rounded-lg border-l-4 border-l-sky-500">
-        <div class="text-[11px] font-mono text-sky-400 uppercase tracking-widest font-bold">
-          LIVE STRUCTURAL SIMULATION &bull; SCROLL TO EXPLORE
-        </div>
-        <h2 class="text-xl sm:text-2xl lg:text-3xl font-extrabold text-white uppercase tracking-tight mt-1">
-          From ETABS Model to Retrofit: Column C7 Step by Step
-        </h2>
-        <p class="text-sm text-slate-400 mt-2 max-w-3xl">
-          Scroll through the stacked deck to follow column C7 from original 3D geometry to load application, live sway deformation, code verification failure, and jacketed restoration.
-        </p>
-      </div>
-
-      <div class="stack">
+    <div class="stack">
         <!-- CARD 1: MODEL -->
-        <article class="card" style="--c:#16181D">
+        <article class="card" style="--c:#0c1d36">
           <div class="tab">
             <span>01 MODEL</span>
-            <span class="opacity-80">ETABS 3D FRAME</span>
+            <span class="text-sky-400 opacity-90">ETABS 3D FRAME</span>
           </div>
           <div class="card-body">
             <div class="grid grid-cols-1 md:grid-cols-12 gap-6 h-full items-center">
-              <div class="md:col-span-6 h-64 md:h-full min-h-[220px] bg-slate-950 rounded-lg overflow-hidden border border-slate-300 flex items-center justify-center p-2">
+              <div class="md:col-span-6 h-64 md:h-full min-h-[220px] bg-white rounded-lg overflow-hidden border border-slate-700 flex items-center justify-center p-2 shadow-inner">
                 <img src="etabs-model.png" alt="ETABS 3D Model of G+2 frame" class="max-h-full max-w-full object-contain">
               </div>
               <div class="md:col-span-6 space-y-3">
-                <h3 class="text-xl sm:text-2xl font-black text-slate-900 uppercase">The Existing Structure</h3>
-                <p class="text-sm text-slate-600 leading-relaxed">
+                <span class="text-sky-400 font-mono text-[11px] uppercase tracking-wider font-bold">STAGE 01 &bull; 3D FRAME GEOMETRY</span>
+                <h3 class="text-xl sm:text-2xl font-bold text-white uppercase font-mono">The Existing Structure</h3>
+                <p class="text-sm text-slate-300 leading-relaxed">
                   A G+2 residential structure in Dharmapuri, modelled in ETABS with <strong>3050 mm</strong> typical storey height. Critical column C7 has initial dimensions of <strong>230 &times; 300 mm</strong>, framing beams are <strong>230 &times; 450 mm</strong> spanning up to <strong>6350 mm</strong>, with a cantilever balcony slab.
                 </p>
-                <div class="grid grid-cols-2 gap-2 p-3 bg-slate-100 rounded-lg border border-slate-200 font-mono text-xs">
-                  <div><span class="text-slate-500 block text-[10px]">C7 COLUMN:</span><strong class="text-slate-900">230 &times; 300 mm</strong></div>
-                  <div><span class="text-slate-500 block text-[10px]">FRAMING BEAMS:</span><strong class="text-slate-900">230 &times; 450 mm</strong></div>
-                  <div><span class="text-slate-500 block text-[10px]">MAX BEAM SPAN:</span><strong class="text-slate-900">6350 mm</strong></div>
-                  <div><span class="text-slate-500 block text-[10px]">STOREY HEIGHT:</span><strong class="text-slate-900">3.05 m</strong></div>
+                <div class="grid grid-cols-2 gap-2 p-3 bg-slate-900/90 rounded border border-slate-800 font-mono text-xs">
+                  <div><span class="text-slate-400 block text-[10px]">C7 COLUMN:</span><strong class="text-white">230 &times; 300 mm</strong></div>
+                  <div><span class="text-slate-400 block text-[10px]">FRAMING BEAMS:</span><strong class="text-white">230 &times; 450 mm</strong></div>
+                  <div><span class="text-slate-400 block text-[10px]">MAX BEAM SPAN:</span><strong class="text-white">6350 mm</strong></div>
+                  <div><span class="text-slate-400 block text-[10px]">STOREY HEIGHT:</span><strong class="text-white">3.05 m</strong></div>
                 </div>
-                <p class="text-xs text-slate-500 leading-relaxed">
+                <p class="text-xs text-slate-400 leading-relaxed">
                   Removing the 1st-floor beam eliminates lateral restraint at mid-height, causing double-height buckling behavior in C7.
                 </p>
               </div>
@@ -826,27 +816,28 @@
         </article>
 
         <!-- CARD 2: LOADS -->
-        <article class="card" style="--c:#1F4E79">
+        <article class="card" style="--c:#0f2744">
           <div class="tab">
             <span>02 LOADS</span>
-            <span class="opacity-80">11.96 / 5.52 KN/M</span>
+            <span class="text-sky-400 opacity-90">11.96 / 5.52 KN/M</span>
           </div>
           <div class="card-body">
             <div class="grid grid-cols-1 md:grid-cols-12 gap-6 h-full items-center">
-              <div class="md:col-span-6 h-64 md:h-full min-h-[220px] bg-slate-950 rounded-lg overflow-hidden border border-slate-300 flex items-center justify-center p-2">
+              <div class="md:col-span-6 h-64 md:h-full min-h-[220px] bg-white rounded-lg overflow-hidden border border-slate-700 flex items-center justify-center p-2 shadow-inner">
                 <img src="etabs-loads.png" alt="ETABS model with line loads" onerror="this.src='etabs-loads.jpg'" class="max-h-full max-w-full object-contain">
               </div>
               <div class="md:col-span-6 space-y-3">
-                <h3 class="text-xl sm:text-2xl font-black text-slate-900 uppercase">Applied Member Loads</h3>
-                <p class="text-sm text-slate-600 leading-relaxed">
+                <span class="text-sky-400 font-mono text-[11px] uppercase tracking-wider font-bold">STAGE 02 &bull; GRAVITY & LIVE LOADINGS</span>
+                <h3 class="text-xl sm:text-2xl font-bold text-white uppercase font-mono">Applied Member Loads</h3>
+                <p class="text-sm text-slate-300 leading-relaxed">
                   Gravity line loads applied uniformly to peripheral and internal framing beams according to IS 875:
                 </p>
-                <div class="grid grid-cols-2 gap-2 p-3 bg-slate-100 rounded-lg border border-slate-200 font-mono text-xs">
-                  <div><span class="text-slate-500 block text-[10px]">FLOOR LINE LOAD:</span><strong class="text-sky-700 text-sm">11.96 kN/m</strong></div>
-                  <div><span class="text-slate-500 block text-[10px]">ROOF LINE LOAD:</span><strong class="text-sky-700 text-sm">5.52 kN/m</strong></div>
+                <div class="grid grid-cols-2 gap-2 p-3 bg-slate-900/90 rounded border border-slate-800 font-mono text-xs">
+                  <div><span class="text-slate-400 block text-[10px]">FLOOR LINE LOAD:</span><strong class="text-sky-400 text-sm">11.96 kN/m</strong></div>
+                  <div><span class="text-slate-400 block text-[10px]">ROOF LINE LOAD:</span><strong class="text-sky-400 text-sm">5.52 kN/m</strong></div>
                 </div>
-                <div class="p-3 bg-sky-50 rounded-lg border border-sky-200 font-mono text-xs text-slate-700">
-                  Analysis under 1.5(DL + LL) combination produces axial load <strong class="text-slate-900">Pu = 536.8 kN</strong>, major moment <strong class="text-slate-900">Mu3 = 52.28 kNm</strong>, and minor moment <strong class="text-slate-900">Mu2 = 18.93 kNm</strong>.
+                <div class="p-3 bg-slate-900/90 rounded border border-slate-800 font-mono text-xs text-slate-300 leading-relaxed">
+                  Analysis under $1.5(\text{DL} + \text{LL})$ combination produces axial load <strong class="text-white">Pu = 536.8 kN</strong>, major moment <strong class="text-rose-400">Mu3 = 52.28 kNm</strong>, and minor moment <strong class="text-amber-400">Mu2 = 18.93 kNm</strong>.
                 </div>
               </div>
             </div>
@@ -854,19 +845,19 @@
         </article>
 
         <!-- CARD 3: DEFORM -->
-        <article class="card" style="--c:#4c1d95">
+        <article class="card" style="--c:#1e1b4b">
           <div class="tab">
             <span>03 DEFORM</span>
-            <span class="opacity-80">LIVE MODEL</span>
+            <span class="text-sky-400 opacity-90">LIVE 3D MODEL</span>
           </div>
           <div class="card-body">
             <div class="grid grid-cols-1 md:grid-cols-12 gap-6 h-full items-center">
-              <div class="md:col-span-6 h-64 md:h-full min-h-[220px] bg-slate-950 rounded-lg overflow-hidden border border-slate-300 flex flex-col justify-between p-2 relative">
+              <div class="md:col-span-6 h-64 md:h-full min-h-[220px] bg-[#050c18] rounded-lg overflow-hidden border border-slate-800 flex flex-col justify-between p-2 relative">
                 <div class="flex-1 w-full h-full relative overflow-hidden flex items-center justify-center">
                   <svg id="stackFr" viewBox="0 0 600 420" role="img" aria-label="Live deforming frame model" class="w-full h-full"></svg>
                   <img id="stackDefImg" src="etabs-deformed.png" alt="ETABS deformed shape" class="hidden absolute inset-0 w-full h-full object-contain bg-white">
                 </div>
-                <div class="flex items-center justify-between gap-2 pt-2 border-t border-slate-800 font-mono text-xs z-10 bg-slate-950">
+                <div class="flex items-center justify-between gap-2 pt-2 border-t border-slate-800 font-mono text-xs z-10 bg-[#050c18]">
                   <label class="flex items-center gap-1.5 text-slate-300 font-bold text-[11px]">
                     Sway: <input type="range" id="stackSl" min="0" max="100" value="0" class="accent-sky-500 w-24 sm:w-32">
                   </label>
@@ -876,25 +867,26 @@
                 </div>
               </div>
               <div class="md:col-span-6 space-y-3">
-                <h3 class="text-xl sm:text-2xl font-black text-slate-900 uppercase">Deformed Shape & Sway</h3>
-                <p class="text-sm text-slate-600 leading-relaxed">
+                <span class="text-sky-400 font-mono text-[11px] uppercase tracking-wider font-bold">STAGE 03 &bull; NONLINEAR FRAME ANALYSIS</span>
+                <h3 class="text-xl sm:text-2xl font-bold text-white uppercase font-mono">Deformed Shape & Sway</h3>
+                <p class="text-sm text-slate-300 leading-relaxed">
                   Drag the slider to simulate 3D space frame sway and beam curvature under gravity and lateral load transfer.
                 </p>
-                <div class="grid grid-cols-3 gap-2 p-3 bg-slate-100 rounded-lg border border-slate-200 font-mono text-xs text-center">
-                  <div class="p-2 bg-white rounded border border-slate-200">
-                    <span class="text-slate-500 block text-[10px]">AXIAL (Pu)</span>
-                    <strong class="text-sm text-slate-900">536.8 kN</strong>
+                <div class="grid grid-cols-3 gap-2 p-3 bg-slate-900/90 rounded border border-slate-800 font-mono text-xs text-center">
+                  <div class="p-2 bg-slate-950 rounded border border-slate-800">
+                    <span class="text-slate-400 block text-[10px]">AXIAL (Pu)</span>
+                    <strong class="text-sm text-white">536.8 kN</strong>
                   </div>
-                  <div class="p-2 bg-white rounded border border-slate-200">
-                    <span class="text-slate-500 block text-[10px]">MAJOR (Mu3)</span>
-                    <strong class="text-sm text-rose-600">52.28 kNm</strong>
+                  <div class="p-2 bg-slate-950 rounded border border-slate-800">
+                    <span class="text-slate-400 block text-[10px]">MAJOR (Mu3)</span>
+                    <strong class="text-sm text-rose-400">52.28 kNm</strong>
                   </div>
-                  <div class="p-2 bg-white rounded border border-slate-200">
-                    <span class="text-slate-500 block text-[10px]">MINOR (Mu2)</span>
-                    <strong class="text-sm text-amber-600">18.93 kNm</strong>
+                  <div class="p-2 bg-slate-950 rounded border border-slate-800">
+                    <span class="text-slate-400 block text-[10px]">MINOR (Mu2)</span>
+                    <strong class="text-sm text-amber-400">18.93 kNm</strong>
                   </div>
                 </div>
-                <p class="text-xs text-slate-500">
+                <p class="text-xs text-slate-400">
                   Without first-floor beam restraint, column C7 buckles across a doubled 5.65 m unsupported length.
                 </p>
               </div>
@@ -903,37 +895,37 @@
         </article>
 
         <!-- CARD 4: SLENDERNESS -->
-        <article class="card" style="--c:#c2410c">
+        <article class="card" style="--c:#451a03">
           <div class="tab">
             <span>04 SLENDERNESS</span>
-            <span class="opacity-80">LIMIT 12</span>
+            <span class="text-amber-400 opacity-90">LIMIT &le; 12</span>
           </div>
           <div class="card-body">
             <div class="grid grid-cols-1 md:grid-cols-12 gap-6 h-full items-center">
               <div class="md:col-span-6">
-                <!-- Exact chart styling matching reference -->
-                <div class="p-4 bg-[#f8fafc] rounded-xl border border-slate-300 font-mono text-xs space-y-3">
+                <!-- Dark blueprint chart container -->
+                <div class="p-4 bg-slate-900/90 rounded-xl border border-slate-800 font-mono text-xs space-y-3">
                   <div>
-                    <div class="flex justify-between font-bold text-slate-700 mb-1">
+                    <div class="flex justify-between font-bold text-slate-300 mb-1">
                       <span>Major axis (kL/D)</span>
-                      <span class="text-sm text-red-600 font-extrabold">28.53</span>
+                      <span class="text-sm text-rose-400 font-extrabold">28.53</span>
                     </div>
-                    <div class="w-full bg-slate-200 h-7 rounded relative overflow-hidden">
-                      <div class="bg-[#dc2626] h-full" style="width: calc(28.53 / 35 * 100%);"></div>
-                      <div class="absolute top-0 bottom-0 border-r-2 border-dashed border-slate-900" style="left: calc(12 / 35 * 100%);"></div>
+                    <div class="w-full bg-slate-800 h-7 rounded relative overflow-hidden">
+                      <div class="bg-rose-500 h-full" style="width: calc(28.53 / 35 * 100%);"></div>
+                      <div class="absolute top-0 bottom-0 border-r-2 border-dashed border-sky-400" style="left: calc(12 / 35 * 100%);"></div>
                     </div>
                   </div>
                   <div>
-                    <div class="flex justify-between font-bold text-slate-700 mb-1">
+                    <div class="flex justify-between font-bold text-slate-300 mb-1">
                       <span>Minor axis (kL/b)</span>
-                      <span class="text-sm text-orange-600 font-extrabold">13.57</span>
+                      <span class="text-sm text-amber-400 font-extrabold">13.57</span>
                     </div>
-                    <div class="w-full bg-slate-200 h-7 rounded relative overflow-hidden">
-                      <div class="bg-[#ea580c] h-full" style="width: calc(13.57 / 35 * 100%);"></div>
-                      <div class="absolute top-0 bottom-0 border-r-2 border-dashed border-slate-900" style="left: calc(12 / 35 * 100%);"></div>
+                    <div class="w-full bg-slate-800 h-7 rounded relative overflow-hidden">
+                      <div class="bg-amber-500 h-full" style="width: calc(13.57 / 35 * 100%);"></div>
+                      <div class="absolute top-0 bottom-0 border-r-2 border-dashed border-sky-400" style="left: calc(12 / 35 * 100%);"></div>
                     </div>
                   </div>
-                  <div class="text-[11px] text-slate-600 border-t border-slate-300 pt-2 leading-relaxed">
+                  <div class="text-[11px] text-slate-400 border-t border-slate-800 pt-2 leading-relaxed">
                     Dashed line: slenderness limit of 12.<br>
                     Major: K 1.515 &times; Lu 5650 mm / D 300 mm = 28.53.<br>
                     Minor: K 1.200 &times; Lu 2600 mm / b 230 mm = 13.57.
@@ -941,12 +933,13 @@
                 </div>
               </div>
               <div class="md:col-span-6 space-y-3">
-                <h3 class="text-xl sm:text-2xl font-black text-slate-900 uppercase">The Column Becomes Slender</h3>
-                <p class="text-sm text-slate-600 leading-relaxed">
+                <span class="text-rose-400 font-mono text-[11px] uppercase tracking-wider font-bold">STAGE 04 &bull; SLENDERNESS RATIO CHECK</span>
+                <h3 class="text-xl sm:text-2xl font-bold text-white uppercase font-mono">The Column Becomes Slender</h3>
+                <p class="text-sm text-slate-300 leading-relaxed">
                   Without the beam, the unsupported length of C7 about the major axis grows to 5650 mm, a length factor of 1.852. Wood&rsquo;s chart for a sway frame gives K = 1.515.
                 </p>
-                <div class="text-4xl font-black text-red-600 my-1 font-mono">28.53</div>
-                <p class="text-xs font-bold text-red-700 uppercase">
+                <div class="text-4xl font-black text-rose-500 my-1 font-mono">28.53</div>
+                <p class="text-xs font-bold text-rose-400 uppercase">
                   Both ratios exceed 12, so C7 is a slender column.
                 </p>
               </div>
@@ -955,48 +948,49 @@
         </article>
 
         <!-- CARD 5: CAPACITY -->
-        <article class="card" style="--c:#b91c1c">
+        <article class="card" style="--c:#4c0519">
           <div class="tab">
             <span>05 CAPACITY</span>
-            <span class="opacity-80">CR 1.179</span>
+            <span class="text-rose-400 opacity-90">CR 1.179 FAILED</span>
           </div>
           <div class="card-body">
             <div class="grid grid-cols-1 md:grid-cols-12 gap-6 h-full items-center">
               <div class="md:col-span-6">
-                <!-- Interactive capacity ratio calculator -->
-                <div class="p-4 bg-[#f8fafc] rounded-xl border border-slate-300 font-mono text-xs space-y-3">
+                <!-- Dark blueprint interactive capacity calculator -->
+                <div class="p-4 bg-slate-900/90 rounded-xl border border-slate-800 font-mono text-xs space-y-3">
                   <div class="flex items-center justify-between">
-                    <span class="font-bold text-slate-700">Capacity Ratio of C7</span>
-                    <span id="stackTot" class="text-base font-extrabold text-red-600">1.179</span>
+                    <span class="font-bold text-slate-300">Capacity Ratio of C7</span>
+                    <span id="stackTot" class="text-base font-extrabold text-rose-400">1.179</span>
                   </div>
-                  <div class="text-[10px] text-slate-500">Mu3 / M3,cap + Mu2 / M2,cap</div>
-                  <div class="w-full bg-slate-200 h-8 rounded relative overflow-hidden flex">
+                  <div class="text-[10px] text-slate-400">Mu3 / M3,cap + Mu2 / M2,cap</div>
+                  <div class="w-full bg-slate-800 h-8 rounded relative overflow-hidden flex">
                     <div id="stackB1" class="bg-sky-500 h-full" style="width: 53.6%;"></div>
                     <div id="stackB2" class="bg-amber-500 h-full" style="width: 23%;"></div>
-                    <div class="absolute top-0 bottom-0 border-r-2 border-dashed border-slate-900" style="left: 65%;"></div>
+                    <div class="absolute top-0 bottom-0 border-r-2 border-dashed border-rose-500" style="left: 65%;"></div>
                   </div>
-                  <div class="space-y-1 text-[11px] text-slate-600 pt-1">
-                    <div id="stackL1" class="text-sky-700">Major: 52.28 / 63.32 = 0.826</div>
-                    <div id="stackL2" class="text-amber-700">Minor: 18.93 / 53.49 = 0.354</div>
+                  <div class="space-y-1 text-[11px] text-slate-400 pt-1">
+                    <div id="stackL1" class="text-sky-300">Major: 52.28 / 63.32 = 0.826</div>
+                    <div id="stackL2" class="text-amber-300">Minor: 18.93 / 53.49 = 0.354</div>
                   </div>
-                  <div class="pt-2 border-t border-slate-300">
-                    <label class="block font-bold text-slate-700 text-[11px] mb-1">
-                      Axial load Pu: <span id="stackPuv" class="text-sky-700">536.8</span> kN
+                  <div class="pt-2 border-t border-slate-800">
+                    <label class="block font-bold text-slate-300 text-[11px] mb-1">
+                      Axial load Pu: <span id="stackPuv" class="text-sky-400">536.8</span> kN
                     </label>
-                    <input type="range" id="stackPu" min="300" max="640" step="0.5" value="536.8" class="accent-sky-600 w-full">
+                    <input type="range" id="stackPu" min="300" max="640" step="0.5" value="536.8" class="accent-sky-500 w-full">
                   </div>
-                  <div id="stackVd" class="text-[11px] font-bold text-red-600">
+                  <div id="stackVd" class="text-[11px] font-bold text-rose-400">
                     Demand exceeds capacity: NOT ADEQUATE (OVERSTRESSED)
                   </div>
                 </div>
               </div>
               <div class="md:col-span-6 space-y-3">
-                <h3 class="text-xl sm:text-2xl font-black text-slate-900 uppercase">Capacity Check to IS 456</h3>
-                <p class="text-sm text-slate-600 leading-relaxed">
+                <span class="text-rose-400 font-mono text-[11px] uppercase tracking-wider font-bold">STAGE 05 &bull; BIAXIAL CAPACITY VERIFICATION</span>
+                <h3 class="text-xl sm:text-2xl font-bold text-white uppercase font-mono">Capacity Check to IS 456</h3>
+                <p class="text-sm text-slate-300 leading-relaxed">
                   Slenderness adds secondary moment to C7: 47.3 kNm about the major axis and 8.2 kNm about the minor axis, after a reduction factor k of 0.721. The biaxial interaction check combines both axes.
                 </p>
-                <div class="text-4xl font-black text-red-600 my-1 font-mono">1.179</div>
-                <p class="text-xs font-bold text-red-700 uppercase">
+                <div class="text-4xl font-black text-rose-500 my-1 font-mono">1.179</div>
+                <p class="text-xs font-bold text-rose-400 uppercase">
                   Capacity ratio, above 1.0, so the 230 &times; 300 mm section is not adequate.
                 </p>
               </div>
@@ -1005,50 +999,51 @@
         </article>
 
         <!-- CARD 6: RETROFIT -->
-        <article class="card" style="--c:#15803d">
+        <article class="card" style="--c:#064e3b">
           <div class="tab">
             <span>06 RETROFIT</span>
-            <span class="opacity-80">CR 0.986 PASS</span>
+            <span class="text-emerald-400 opacity-90">CR 0.986 PASS</span>
           </div>
           <div class="card-body">
             <div class="grid grid-cols-1 md:grid-cols-12 gap-6 h-full items-center">
               <div class="md:col-span-6 space-y-3">
                 <div class="grid grid-cols-2 gap-3 h-52 sm:h-56">
-                  <figure class="bg-slate-50 p-2 rounded-lg border border-slate-200 flex flex-col items-center">
+                  <figure class="bg-white p-2 rounded-lg border border-slate-700 flex flex-col items-center">
                     <img src="existing-column.png" alt="Existing column section, 230 by 300 mm" class="flex-1 max-h-40 w-full object-contain">
-                    <figcaption class="text-[10px] font-mono font-bold text-slate-700 mt-1 text-center">Existing: 230&times;300 mm</figcaption>
+                    <figcaption class="text-[10px] font-mono font-bold text-slate-800 mt-1 text-center">Existing: 230&times;300 mm</figcaption>
                   </figure>
-                  <figure class="bg-slate-50 p-2 rounded-lg border border-slate-200 flex flex-col items-center">
+                  <figure class="bg-white p-2 rounded-lg border border-slate-700 flex flex-col items-center">
                     <img src="jacket-column.png" alt="Jacketed column section, 380 by 380 mm" class="flex-1 max-h-40 w-full object-contain">
-                    <figcaption class="text-[10px] font-mono font-bold text-slate-700 mt-1 text-center">Jacketed: 380&times;380 mm</figcaption>
+                    <figcaption class="text-[10px] font-mono font-bold text-slate-800 mt-1 text-center">Jacketed: 380&times;380 mm</figcaption>
                   </figure>
                 </div>
-                <!-- Before/After Bars -->
-                <div class="p-3 bg-slate-100 rounded-lg border border-slate-200 font-mono text-xs space-y-1.5">
+                <!-- Before/After Bars in Dark Blueprint theme -->
+                <div class="p-3 bg-slate-900/90 rounded-lg border border-slate-800 font-mono text-xs space-y-1.5">
                   <div class="flex items-center">
-                    <span class="w-20 font-bold text-slate-700">Before: 1.179</span>
-                    <div class="flex-1 bg-slate-200 h-3.5 rounded overflow-hidden ml-2">
-                      <div class="bg-red-600 h-full" style="width: 82%;"></div>
+                    <span class="w-20 font-bold text-slate-300">Before: 1.179</span>
+                    <div class="flex-1 bg-slate-800 h-3.5 rounded overflow-hidden ml-2">
+                      <div class="bg-rose-500 h-full" style="width: 82%;"></div>
                     </div>
                   </div>
                   <div class="flex items-center">
-                    <span class="w-20 font-bold text-slate-700">After: 0.986</span>
-                    <div class="flex-1 bg-slate-200 h-3.5 rounded overflow-hidden ml-2">
-                      <div class="bg-green-600 h-full" style="width: 68%;"></div>
+                    <span class="w-20 font-bold text-slate-300">After: 0.986</span>
+                    <div class="flex-1 bg-slate-800 h-3.5 rounded overflow-hidden ml-2">
+                      <div class="bg-emerald-500 h-full" style="width: 68%;"></div>
                     </div>
                   </div>
                 </div>
               </div>
               <div class="md:col-span-6 space-y-3">
-                <h3 class="text-xl sm:text-2xl font-black text-slate-900 uppercase">Retrofit with RC Jacketing</h3>
-                <p class="text-sm text-slate-600 leading-relaxed">
+                <span class="text-emerald-400 font-mono text-[11px] uppercase tracking-wider font-bold">STAGE 06 &bull; RETROFITTING RECTIFICATION</span>
+                <h3 class="text-xl sm:text-2xl font-bold text-white uppercase font-mono">Retrofit with RC Jacketing</h3>
+                <p class="text-sm text-slate-300 leading-relaxed">
                   Jacketing enlarges C7 to 380 &times; 380 mm, which makes it a short column in both directions (slenderness 9.63). The jacket keeps the existing core and adds new &Oslash;16 mm longitudinal bars, &Oslash;8 mm links around it, and &Oslash;8 mm dowel bars tying new concrete to old.
                 </p>
-                <div class="text-4xl font-black text-emerald-600 my-1 font-mono">0.986</div>
-                <p class="text-xs font-bold text-emerald-700 uppercase">
+                <div class="text-4xl font-black text-emerald-400 my-1 font-mono">0.986</div>
+                <p class="text-xs font-bold text-emerald-400 uppercase">
                   Capacity ratio after jacketing, at the design limit (IS 456 compliant).
                 </p>
-                <p class="text-[11px] text-slate-500 leading-relaxed">
+                <p class="text-[11px] text-slate-400 leading-relaxed">
                   Passes the checked load combination. Shoring, dowel anchorage, interface preparation, and foundation capacity still verified on site.
                 </p>
               </div>
@@ -1056,7 +1051,6 @@
           </div>
         </article>
       </div>
-    </section>
 
     <!-- UNDERGRADUATE & INTERNSHIP PROJECTS -->
     <section id="projects" class="space-y-6">
