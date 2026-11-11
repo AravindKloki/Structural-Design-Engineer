@@ -948,198 +948,689 @@
     </section>
 
     <!-- ===== LIVE STRUCTURAL SIMULATION SECTION ===== -->
-    <section id="simulation" class="space-y-6">
-      <div class="cad-box p-5 rounded-lg border-l-4 border-l-sky-500">
-        <div class="text-[11px] font-mono text-sky-400 uppercase tracking-widest font-bold">
-          LIVE STRUCTURAL SIMULATION &bull; SCROLL TO EXPLORE
+   <!-- ===== LIVE STRUCTURAL SIMULATION SECTION ===== -->
+<style>
+  .sim-wrap {
+    display: grid;
+    grid-template-columns: 56% 44%;
+    gap: 1.5rem;
+    align-items: start;
+  }
+  .sim-stage.cad-box {
+    position: sticky;
+    top: 4.75rem;
+    height: calc(100vh - 9.5rem);
+    min-height: 520px;
+    display: flex;
+    flex-direction: column;
+    padding: 0.85rem;
+    z-index: 25;
+  }
+  .sim-steps {
+    display: flex;
+    gap: 0.35rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .sim-steps button {
+    font-size: 11px;
+    padding: 0.25rem 0.55rem;
+    border: 1px solid #1b3252;
+    color: #94a3b8;
+    background: #030c1a;
+    border-radius: 3px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    transition: all 0.2s;
+  }
+  .sim-steps button:hover {
+    color: #38bdf8;
+    border-color: #38bdf8;
+  }
+  .sim-steps button[aria-current="true"] {
+    background: #0284c7;
+    border-color: #38bdf8;
+    color: #fff;
+    font-weight: 700;
+  }
+  .sim-metrics-bar {
+    margin-top: 0.5rem;
+    padding: 0.4rem 0.75rem;
+    border-radius: 4px;
+    background: #030814;
+    border: 1px solid #1e3a5f;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #38bdf8;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 2.2rem;
+  }
+  .sim-view {
+    position: relative;
+    flex: 1;
+    min-height: 0;
+    margin-top: 0.5rem;
+    border-radius: 4px;
+    overflow: hidden;
+    background: #050e1c;
+    border: 1px solid #1b3252;
+  }
+  .sim-pane,
+  .sim-pane2 {
+    position: absolute;
+    inset: 0;
+    background: #ffffff;
+    transition: opacity 0.5s;
+  }
+  .sim-pane img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    opacity: 0;
+    transition: opacity 0.6s;
+    background: #ffffff;
+  }
+  .sim-pane2 {
+    opacity: 0;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    padding: 0.75rem;
+    color: #0f172a;
+    background: #ffffff;
+  }
+  .sim-stage[data-s="4"] .sim-pane,
+  .sim-stage[data-s="5"] .sim-pane,
+  .sim-stage[data-s="6"] .sim-pane {
+    opacity: 0;
+  }
+  .sim-stage[data-s="6"] .sim-pane2 {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .sim-view svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+  #simCalc {
+    pointer-events: none;
+    background: #050e1c;
+  }
+  #simCalc g.v {
+    opacity: 0;
+    transition: opacity 0.5s;
+  }
+  .sim-stage[data-s="4"] .v4,
+  .sim-stage[data-s="5"] .v5 {
+    opacity: 1 !important;
+  }
+  #simCalc text {
+    font: 600 13px 'JetBrains Mono', monospace;
+    fill: #e2e8f0;
+  }
+  #simCalc text.s {
+    font-size: 11px;
+    fill: #94a3b8;
+    font-weight: 400;
+  }
+  .sim-bar {
+    transform: scaleX(0);
+    transform-origin: left;
+    transform-box: fill-box;
+    transition: transform 1.1s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .sim-stage[data-s="4"] .v4 .sim-bar,
+  .sim-stage[data-s="5"] .v5 .sim-bar {
+    transform: scaleX(1);
+  }
+  .sim-ctl {
+    display: none;
+    gap: 0.6rem;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding-top: 0.5rem;
+    font: 600 11px 'JetBrains Mono', monospace;
+    color: #cbd5e1;
+  }
+  .sim-ctl input {
+    accent-color: #38bdf8;
+    width: min(220px, 45vw);
+  }
+  .sim-ctl button {
+    font: 600 11px 'JetBrains Mono', monospace;
+    padding: 0.25rem 0.6rem;
+    border: 1px solid #38bdf8;
+    background: #030e20;
+    color: #38bdf8;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  .sim-ctl button[aria-pressed="true"] {
+    background: #0284c7;
+    color: #fff;
+  }
+  .sim-stage[data-s="3"] #simC3,
+  .sim-stage[data-s="5"] #simC5 {
+    display: flex;
+  }
+  .sim-figs {
+    flex: 1;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+  .sim-figs figure {
+    margin: 0;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    background: #f8fafc;
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+    padding: 0.25rem;
+  }
+  .sim-figs img {
+    flex: 1;
+    min-height: 0;
+    width: 100%;
+    object-fit: contain;
+  }
+  .sim-figs figcaption {
+    font: 600 10px/1.3 'JetBrains Mono', monospace;
+    padding-top: 0.25rem;
+    text-align: center;
+    color: #334155;
+  }
+  .sim-crs {
+    padding-top: 0.4rem;
+  }
+  .sim-crs div {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    align-items: center;
+    gap: 0.5rem;
+    font: 600 11px 'JetBrains Mono', monospace;
+    margin-top: 0.25rem;
+  }
+  .sim-crs i {
+    display: block;
+    height: 12px;
+    background: #dc2626;
+    width: calc(var(--w) * 70%);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 1s;
+    border-radius: 2px;
+  }
+  .sim-crs i.ok {
+    background: #16a34a;
+    transition-delay: 0.5s;
+  }
+  .sim-stage[data-s="6"] .sim-crs i {
+    transform: scaleX(1);
+  }
+
+  /* CARD STRUCTURE FOR DATA IN THE BOTTOM */
+  .sim-cards-container {
+    padding-bottom: 7rem;
+  }
+  .sim-sec {
+    min-height: auto;
+    margin-bottom: 1.75rem;
+    padding: 1.35rem 1.25rem;
+    background: rgba(8, 20, 38, 0.95);
+    border: 1px solid #1c365a;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    transition: border-color 0.3s;
+  }
+  .sim-sec:hover {
+    border-color: #38bdf8;
+  }
+
+  /* MOBILE RESPONSIVE OVERRIDES */
+  @media (max-width: 1023px) {
+    .sim-wrap {
+      display: block !important;
+    }
+    .sim-stage.cad-box {
+      position: sticky !important;
+      top: 3.5rem !important;
+      height: 52vh !important;
+      min-height: 350px !important;
+      max-height: 460px !important;
+      z-index: 30 !important;
+      padding: 0.65rem !important;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9) !important;
+      margin-bottom: 1.5rem !important;
+    }
+    .sim-sec {
+      margin-bottom: 1.5rem !important;
+      padding: 1.2rem 1rem !important;
+    }
+    .sim-cards-container {
+      padding-bottom: 8rem !important;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .sim-stage * {
+      transition: none !important;
+    }
+  }
+</style>
+
+<section id="simulation" class="space-y-6">
+  <div class="cad-box p-5 rounded-lg border-l-4 border-l-sky-500">
+    <div class="text-[11px] font-mono text-sky-400 uppercase tracking-widest font-bold">
+      LIVE STRUCTURAL SIMULATION &bull; SCROLL TO EXPLORE
+    </div>
+    <h2 class="text-xl sm:text-2xl lg:text-3xl font-extrabold text-white uppercase tracking-tight mt-1">
+      From ETABS Model to Retrofit: Column C7 Step by Step
+    </h2>
+    <p class="text-sm text-slate-400 mt-2 max-w-3xl">
+      Follow column C7 from original 3D geometry to load application, live sway deformation, code verification failure, and jacketed restoration.
+    </p>
+  </div>
+
+  <div class="sim-wrap">
+    <!-- ENLARGED & ALIGNED STICKY VIEWER -->
+    <div class="sim-stage cad-box rounded-lg" id="simStage" data-s="1">
+      <div class="sim-steps" id="simSteps"></div>
+
+      <!-- Live metrics indicator -->
+      <div class="sim-metrics-bar">
+        <span id="simMetricTitle" class="font-bold text-white uppercase text-[10px] sm:text-xs">STAGE 1: MODEL</span>
+        <span id="simMetricValue" class="text-[11px] sm:text-xs font-semibold text-sky-300">Section: 230 x 300 mm</span>
+      </div>
+
+      <div class="sim-view">
+        <div class="sim-pane">
+          <img src="etabs-model.png" alt="ETABS 3D model of the G+2 frame">
+          <img src="etabs-loads.png" alt="ETABS model with line loads" onerror="this.src='etabs-loads.jpg'">
+          <img src="etabs-deformed.png" alt="ETABS deformed shape">
+          <svg id="simFr" viewBox="0 0 600 420" role="img" aria-label="Live deforming frame model" style="transition:opacity 0.5s"></svg>
         </div>
-        <h2 class="text-xl sm:text-2xl lg:text-3xl font-extrabold text-white uppercase tracking-tight mt-1">
-          From ETABS Model to Retrofit: Column C7 Step by Step
-        </h2>
-        <p class="text-sm text-slate-400 mt-2 max-w-3xl">
-          Scroll through the stages, drag the sliders and watch the G+2 frame deform and the C7 capacity ratio respond[cite: 15].
+        <div class="sim-pane2">
+          <div class="sim-figs">
+            <figure>
+              <img src="existing-column.png" alt="Existing column section, 230 by 300 mm">
+              <figcaption>Existing: 230 x 300 mm</figcaption>
+            </figure>
+            <figure>
+              <img src="jacket-column.png" alt="Jacketed column section, 380 by 380 mm">
+              <figcaption>Jacketed: 380 x 380 mm</figcaption>
+            </figure>
+          </div>
+          <div class="sim-crs">
+            <div><span>Before: 1.179</span><i style="--w:1.179"></i></div>
+            <div><span>After: 0.986</span><i class="ok" style="--w:0.986"></i></div>
+          </div>
+        </div>
+
+        <svg id="simCalc" viewBox="0 0 600 420" role="img" aria-label="Calculation results for column C7">
+          <g class="v v4">
+            <text x="35" y="45">Slenderness, KLu/D (IS 456 Limit = 12)</text>
+            <text x="35" y="115">Major axis (kL/D)</text>
+            <rect class="sim-bar" x="35" y="125" width="314" height="28" fill="#ef4444" />
+            <text x="360" y="145" font-weight="700">28.53</text>
+            <text x="35" y="195">Minor axis (kL/b)</text>
+            <rect class="sim-bar" x="35" y="205" width="149" height="28" fill="#eab308" />
+            <text x="195" y="225" font-weight="700">13.57</text>
+            <path d="M167 80V250" stroke="#e2e8f0" stroke-width="2" stroke-dasharray="6 5" />
+            <text x="167" y="268" text-anchor="middle" font-size="11">Code Limit: 12</text>
+            <text class="s" x="35" y="315">Major: K=1.515, Lu=5650 mm, D=300 mm</text>
+            <text class="s" x="35" y="338">Minor: K=1.200, Lu=2600 mm, b=230 mm</text>
+            <text class="s" x="35" y="361" fill="#ef4444" font-weight="700">Both exceed 12: Column C7 is classified as SLENDER</text>
+          </g>
+          <g class="v v5">
+            <text x="35" y="45">Biaxial Capacity Ratio: IS 456 Cl. 39.6</text>
+            <rect class="sim-bar" id="simB1" x="35" y="125" width="271" height="40" fill="#38bdf8" />
+            <rect class="sim-bar" id="simB2" x="306" y="125" width="116" height="40" fill="#eab308" style="transition-delay:0.5s" />
+            <path d="M363 100V185" stroke="#e2e8f0" stroke-width="2" stroke-dasharray="6 5" />
+            <text x="363" y="94" text-anchor="middle" font-size="11">1.0 Safe Limit</text>
+            <text id="simTot" x="435" y="152" style="fill:#ef4444;font-size:24px;font-weight:800">1.179</text>
+            <rect x="35" y="220" width="12" height="12" fill="#38bdf8" />
+            <text class="s" id="simL1" x="55" y="231">Major: 52.28 / 63.32 = 0.826</text>
+            <rect x="35" y="246" width="12" height="12" fill="#eab308" />
+            <text class="s" id="simL2" x="55" y="257">Minor: 18.93 / 53.49 = 0.354</text>
+            <text id="simVd" x="35" y="310" style="fill:#ef4444;font-weight:700">Demand exceeds capacity: NOT ADEQUATE (OVERSTRESSED)</text>
+          </g>
+        </svg>
+      </div>
+
+      <div class="sim-ctl" id="simC3">
+        <label>Deform <input type="range" id="simSl" min="0" max="100" value="0" aria-label="Deformation scale"></label>
+        <button id="simTe" aria-pressed="false">Show ETABS result</button>
+      </div>
+      <div class="sim-ctl" id="simC5">
+        <label>Pu: <span id="simPuv">536.8</span> kN <input type="range" id="simPu" min="300" max="640" step="0.1" value="536.8"></label>
+      </div>
+      <p id="simCap" class="text-[11px] font-mono text-slate-400 pt-1 min-h-[2rem] truncate text-center"></p>
+    </div>
+
+    <!-- CLEAN COMPACT DATA CARDS (NO HUGE EMPTY VOIDS) -->
+    <div class="sim-cards-container">
+      <div class="sim-sec" data-s="1">
+        <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+          <span class="text-xs font-mono text-sky-400 font-bold uppercase tracking-wider">STAGE 01 &bull; 3D FRAME GEOMETRY</span>
+          <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-sky-950 border border-sky-800 text-sky-300">ETABS CAD</span>
+        </div>
+        <h3 class="text-lg sm:text-xl font-extrabold text-white uppercase">The Existing Structure</h3>
+        <p class="text-sm text-slate-300 leading-relaxed">
+          A G+2 residential structure modelled in ETABS with <strong>3050 mm</strong> storey height. Column C7 has initial dimensions of <strong>230 &times; 300 mm</strong>.
+        </p>
+        <div class="grid grid-cols-2 gap-2 p-3 bg-slate-900/90 rounded border border-slate-800 font-mono text-xs">
+          <div><span class="text-slate-500 block text-[10px]">C7 COLUMN:</span><strong class="text-white">230 &times; 300 mm</strong></div>
+          <div><span class="text-slate-500 block text-[10px]">FRAMING BEAMS:</span><strong class="text-white">230 &times; 450 mm</strong></div>
+          <div><span class="text-slate-500 block text-[10px]">MAX BEAM SPAN:</span><strong class="text-white">6350 mm</strong></div>
+          <div><span class="text-slate-500 block text-[10px]">STOREY HEIGHT:</span><strong class="text-white">3.05 m</strong></div>
+        </div>
+        <p class="text-xs text-slate-400">
+          Removing the 1st-floor beam eliminates lateral bracing at mid-height, causing double-height buckling behavior in C7.
         </p>
       </div>
 
-      <div class="sim-wrap">
-        <div class="sim-stage cad-box rounded-lg" id="simStage" data-s="1">
-          <div class="sim-steps" id="simSteps"></div>
-
-          <!-- Live metrics pill -->
-          <div class="sim-metrics-bar">
-            <span id="simMetricTitle" class="font-bold text-white uppercase text-[10px] sm:text-xs">STAGE 1: MODEL</span>
-            <span id="simMetricValue" class="text-[11px] sm:text-xs font-semibold text-sky-300">Section: 230 x 300 mm</span>
-          </div>
-
-          <div class="sim-view">
-            <div class="sim-pane">
-              <img src="etabs-model.png" alt="ETABS 3D model of the G+2 frame">
-              <img src="etabs-loads.png" alt="ETABS model with line loads" onerror="this.src='etabs-loads.jpg'">
-              <img src="etabs-deformed.png" alt="ETABS deformed shape">
-              <svg id="simFr" viewBox="0 0 600 420" role="img" aria-label="Live deforming frame model" style="transition:opacity 0.5s"></svg>
-            </div>
-            <div class="sim-pane2">
-              <div class="sim-figs">
-                <figure>
-                  <img src="existing-column.png" alt="Existing column section, 230 by 300 mm">
-                  <figcaption>Existing: 230 x 300 mm, &Oslash;20 mm bars, &Oslash;8 mm ties</figcaption>
-                </figure>
-                <figure>
-                  <img src="jacket-column.png" alt="Jacketed column section, 380 by 380 mm">
-                  <figcaption>Jacketed: 380 x 380 mm, new &Oslash;16 mm bars, &Oslash;8 mm links</figcaption>
-                </figure>
-              </div>
-              <div class="sim-crs">
-                <div><span>Before: 1.179</span><i style="--w:1.179"></i></div>
-                <div><span>After: 0.986</span><i class="ok" style="--w:0.986"></i></div>
-              </div>
-            </div>
-
-            <svg id="simCalc" viewBox="0 0 600 420" role="img" aria-label="Calculation results for column C7">
-              <g class="v v4">
-                <text x="30" y="45">Slenderness, KLu/D (IS 456 Limit = 12)</text>
-                <text x="30" y="115">Major axis (kL/D)</text>
-                <rect class="sim-bar" x="30" y="125" width="314" height="28" fill="#ef4444" />
-                <text x="355" y="145" font-weight="700">28.53</text>
-                <text x="30" y="195">Minor axis (kL/b)</text>
-                <rect class="sim-bar" x="30" y="205" width="149" height="28" fill="#eab308" />
-                <text x="190" y="225" font-weight="700">13.57</text>
-                <path d="M162 80V250" stroke="#e2e8f0" stroke-width="2" stroke-dasharray="6 5" />
-                <text x="162" y="268" text-anchor="middle" font-size="11">Code Limit: 12</text>
-                <text class="s" x="30" y="315">Major: K=1.515, Lu=5650 mm, D=300 mm</text>
-                <text class="s" x="30" y="338">Minor: K=1.200, Lu=2600 mm, b=230 mm</text>
-                <text class="s" x="30" y="361" fill="#ef4444" font-weight="700">Both exceed 12: Column C7 is classified as SLENDER</text>
-              </g>
-              <g class="v v5">
-                <text x="30" y="45">Biaxial Capacity Ratio: IS 456 Cl. 39.6</text>
-                <rect class="sim-bar" id="simB1" x="30" y="125" width="271" height="40" fill="#38bdf8" />
-                <rect class="sim-bar" id="simB2" x="301" y="125" width="116" height="40" fill="#eab308" style="transition-delay:0.5s" />
-                <path d="M358 100V185" stroke="#e2e8f0" stroke-width="2" stroke-dasharray="6 5" />
-                <text x="358" y="94" text-anchor="middle" font-size="11">1.0 Safe Limit</text>
-                <text id="simTot" x="430" y="152" style="fill:#ef4444;font-size:24px;font-weight:800">1.179</text>
-                <rect x="30" y="220" width="12" height="12" fill="#38bdf8" />
-                <text class="s" id="simL1" x="50" y="231">Major: 52.28 / 63.32 = 0.826</text>
-                <rect x="30" y="246" width="12" height="12" fill="#eab308" />
-                <text class="s" id="simL2" x="50" y="257">Minor: 18.93 / 53.49 = 0.354</text>
-                <text id="simVd" x="30" y="310" style="fill:#ef4444;font-weight:700">Demand exceeds capacity: NOT ADEQUATE (OVERSTRESSED)</text>
-              </g>
-            </svg>
-          </div>
-
-          <div class="sim-ctl" id="simC3">
-            <label>Deform <input type="range" id="simSl" min="0" max="100" value="0" aria-label="Deformation scale"></label>
-            <button id="simTe" aria-pressed="false">Show ETABS result</button>
-          </div>
-          <div class="sim-ctl" id="simC5">
-            <label>Pu: <span id="simPuv">536.8</span> kN <input type="range" id="simPu" min="300" max="640" step="0.1" value="536.8"></label>
-          </div>
-          <p id="simCap" class="text-[11px] font-mono text-slate-400 pt-1 min-h-[2.2em] truncate"></p>
+      <div class="sim-sec" data-s="2">
+        <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+          <span class="text-xs font-mono text-sky-400 font-bold uppercase tracking-wider">STAGE 02 &bull; GRAVITY & LIVE LOADINGS</span>
+          <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-sky-950 border border-sky-800 text-sky-300">IS 875</span>
         </div>
+        <h3 class="text-lg sm:text-xl font-extrabold text-white uppercase">Applied Member Loads</h3>
+        <p class="text-sm text-slate-300 leading-relaxed">
+          Line loads applied to all peripheral and internal framing beams:
+        </p>
+        <div class="grid grid-cols-2 gap-2 p-3 bg-slate-900/90 rounded border border-slate-800 font-mono text-xs">
+          <div><span class="text-slate-500 block text-[10px]">FLOOR LINE LOAD:</span><strong class="text-sky-400 text-sm">11.96 kN/m</strong></div>
+          <div><span class="text-slate-500 block text-[10px]">ROOF LINE LOAD:</span><strong class="text-sky-400 text-sm">5.52 kN/m</strong></div>
+        </div>
+        <p class="text-xs text-slate-400">
+          Loading is uniformly distributed across beams to analyze critical load transfer into supporting columns.
+        </p>
+      </div>
 
-        <div>
-          <div class="sim-sec" data-s="1">
-            <div class="text-xs font-mono text-sky-400 uppercase font-bold tracking-wider">STAGE 01 &bull; 3D FRAME GEOMETRY</div>
-            <h3 class="text-xl sm:text-2xl font-extrabold text-white uppercase">The Existing Structure</h3>
-            <p class="text-sm text-slate-300 leading-relaxed">
-              A G+2 residential frame modelled in ETABS with a <strong>3050 mm</strong> typical storey height. Critical column C7 has initial dimensions of <strong>230 &times; 300 mm</strong>.
-            </p>
-            <div class="grid grid-cols-2 gap-2 p-3 bg-slate-900/80 rounded border border-slate-800 font-mono text-xs">
-              <div><span class="text-slate-500 block">C7 Column Size:</span><strong>230 &times; 300 mm</strong></div>
-              <div><span class="text-slate-500 block">Typical Beams:</span><strong>230 &times; 450 mm</strong></div>
-              <div><span class="text-slate-500 block">Max Beam Span:</span><strong>6350 mm</strong></div>
-              <div><span class="text-slate-500 block">Storey Height:</span><strong>3.05 m</strong></div>
-            </div>
-            <p class="text-xs text-slate-400 leading-relaxed">
-              Removing the 1st-floor beam eliminates lateral restraint at mid-height, causing double-height buckling behavior in C7.
-            </p>
+      <div class="sim-sec" data-s="3">
+        <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+          <span class="text-xs font-mono text-sky-400 font-bold uppercase tracking-wider">STAGE 03 &bull; NONLINEAR FRAME ANALYSIS</span>
+          <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-rose-950 border border-rose-800 text-rose-300">FEA DEMAND</span>
+        </div>
+        <h3 class="text-lg sm:text-xl font-extrabold text-white uppercase">ETABS Internal Demand On C7</h3>
+        <p class="text-sm text-slate-300 leading-relaxed">
+          3D finite element analysis under $1.5(\text{DL} + \text{LL})$ shows heavy biaxial bending and axial concentration on C7:
+        </p>
+        <div class="grid grid-cols-3 gap-2 p-3 bg-slate-900/90 rounded border border-slate-800 font-mono text-xs text-center">
+          <div class="p-2 bg-slate-950 rounded border border-slate-800">
+            <span class="text-slate-500 block text-[10px]">AXIAL (Pu)</span>
+            <strong class="text-sm text-white">536.8 kN</strong>
           </div>
-
-          <div class="sim-sec" data-s="2">
-            <div class="text-xs font-mono text-sky-400 uppercase font-bold tracking-wider">STAGE 02 &bull; GRAVITY & LIVE LOADINGS</div>
-            <h3 class="text-xl sm:text-2xl font-extrabold text-white uppercase">Applied Member Loads</h3>
-            <p class="text-sm text-slate-300 leading-relaxed">
-              Line loads applied to all peripheral and internal framing beams according to IS 875:
-            </p>
-            <div class="grid grid-cols-2 gap-2 p-3 bg-slate-900/80 rounded border border-slate-800 font-mono text-xs">
-              <div><span class="text-slate-500 block">Floor Line Load:</span><strong class="text-sky-400">11.96 kN/m</strong></div>
-              <div><span class="text-slate-500 block">Roof Line Load:</span><strong class="text-sky-400">5.52 kN/m</strong></div>
-            </div>
+          <div class="p-2 bg-slate-950 rounded border border-slate-800">
+            <span class="text-slate-500 block text-[10px]">MAJOR (Mu3)</span>
+            <strong class="text-sm text-rose-400">52.28 kNm</strong>
           </div>
-
-          <div class="sim-sec" data-s="3">
-            <div class="text-xs font-mono text-sky-400 uppercase font-bold tracking-wider">STAGE 03 &bull; NONLINEAR FRAME ANALYSIS</div>
-            <h3 class="text-xl sm:text-2xl font-extrabold text-white uppercase">ETABS Internal Demand On C7</h3>
-            <p class="text-sm text-slate-300 leading-relaxed">
-              Full 3D space-frame finite element solution under $1.5(\text{DL} + \text{LL})$ reveals heavy biaxial bending:
-            </p>
-            <div class="grid grid-cols-3 gap-2 p-3 bg-slate-900/80 rounded border border-slate-800 font-mono text-xs text-center">
-              <div class="p-2 bg-slate-950 rounded border border-slate-800">
-                <span class="text-slate-500 block text-[10px]">AXIAL LOAD (Pu)</span>
-                <strong class="text-base text-white">536.8 kN</strong>
-              </div>
-              <div class="p-2 bg-slate-950 rounded border border-slate-800">
-                <span class="text-slate-500 block text-[10px]">MAJOR MOMENT (Mu3)</span>
-                <strong class="text-base text-rose-400">52.28 kNm</strong>
-              </div>
-              <div class="p-2 bg-slate-950 rounded border border-slate-800">
-                <span class="text-slate-500 block text-[10px]">MINOR MOMENT (Mu2)</span>
-                <strong class="text-base text-amber-400">18.93 kNm</strong>
-              </div>
-            </div>
-          </div>
-
-          <div class="sim-sec" data-s="4">
-            <div class="text-xs font-mono text-rose-400 uppercase font-bold tracking-wider">STAGE 04 &bull; SLENDERNESS RATIO CHECK</div>
-            <h3 class="text-xl sm:text-2xl font-extrabold text-white uppercase">Failure of Slenderness Limits</h3>
-            <p class="text-sm text-slate-300 leading-relaxed">
-              Unsupported length jumps from <strong>2600 mm</strong> to <strong>5650 mm</strong>. Wood&rsquo;s charts yield effective length factor $K = 1.515$:
-            </p>
-            <div class="grid grid-cols-2 gap-3 p-3 bg-rose-950/30 rounded border border-rose-900 font-mono">
-              <div>
-                <span class="text-xs text-slate-400 block">MAJOR SLENDERNESS</span>
-                <span class="text-3xl font-extrabold text-rose-400">28.53</span>
-                <span class="text-[10px] text-rose-300 block">&gt; 12.0 (LIMIT EXCEEDED)</span>
-              </div>
-              <div>
-                <span class="text-xs text-slate-400 block">MINOR SLENDERNESS</span>
-                <span class="text-3xl font-extrabold text-amber-400">13.57</span>
-                <span class="text-[10px] text-amber-300 block">&gt; 12.0 (LIMIT EXCEEDED)</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="sim-sec" data-s="5">
-            <div class="text-xs font-mono text-rose-400 uppercase font-bold tracking-wider">STAGE 05 &bull; BIAXIAL CAPACITY VERIFICATION</div>
-            <h3 class="text-xl sm:text-2xl font-extrabold text-white uppercase">Capacity Ratio Demand Check</h3>
-            <p class="text-sm text-slate-300 leading-relaxed">
-              IS 456 Cl. 39.6 interaction formula check combining major and minor bending demands:
-            </p>
-            <div class="p-4 bg-rose-950/50 rounded border-2 border-rose-600 font-mono text-center">
-              <span class="text-xs text-rose-200 block uppercase">BIAXIAL CAPACITY RATIO (CR)</span>
-              <div class="text-4xl font-black text-rose-400 my-1">1.179</div>
-              <span class="text-xs font-bold px-2 py-0.5 rounded bg-rose-900 text-rose-200 inline-block uppercase">
-                SECTION OVERSTRESSED &bull; NOT ADEQUATE
-              </span>
-            </div>
-          </div>
-
-          <div class="sim-sec" data-s="6">
-            <div class="text-xs font-mono text-emerald-400 uppercase font-bold tracking-wider">STAGE 06 &bull; RETROFITTING RECTIFICATION</div>
-            <h3 class="text-xl sm:text-2xl font-extrabold text-white uppercase">Jacketing Pass State</h3>
-            <p class="text-sm text-slate-300 leading-relaxed">
-              The 380 &times; 380 mm reinforced concrete jacket drops slenderness to <strong>9.63 &lt; 12</strong> (stocky column) and restores structural safety:
-            </p>
-            <div class="p-4 bg-emerald-950/50 rounded border-2 border-emerald-500 font-mono text-center">
-              <span class="text-xs text-emerald-200 block uppercase">REVISED CAPACITY RATIO (CR)</span>
-              <div class="text-4xl font-black text-emerald-400 my-1">0.986</div>
-              <span class="text-xs font-bold px-2 py-0.5 rounded bg-emerald-900 text-emerald-200 inline-block uppercase">
-                DESIGN PASS &bull; IS 456 CODE COMPLIANT
-              </span>
-            </div>
+          <div class="p-2 bg-slate-950 rounded border border-slate-800">
+            <span class="text-slate-500 block text-[10px]">MINOR (Mu2)</span>
+            <strong class="text-sm text-amber-400">18.93 kNm</strong>
           </div>
         </div>
       </div>
-    </section>
+
+      <div class="sim-sec" data-s="4">
+        <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+          <span class="text-xs font-mono text-rose-400 font-bold uppercase tracking-wider">STAGE 04 &bull; SLENDERNESS RATIO CHECK</span>
+          <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-rose-950 border border-rose-800 text-rose-300">LIMIT: &le; 12</span>
+        </div>
+        <h3 class="text-lg sm:text-xl font-extrabold text-white uppercase">Slenderness Exceedance</h3>
+        <p class="text-sm text-slate-300 leading-relaxed">
+          Unsupported length increases to <strong>5650 mm</strong>. Wood&rsquo;s sway charts yield effective length factor $K = 1.515$:
+        </p>
+        <div class="grid grid-cols-2 gap-3 p-3 bg-rose-950/40 rounded border border-rose-900 font-mono">
+          <div>
+            <span class="text-[10px] text-slate-400 block">MAJOR (kL/D)</span>
+            <span class="text-2xl font-extrabold text-rose-400">28.53</span>
+            <span class="text-[10px] text-rose-300 block">&gt; 12.0 (SLENDER)</span>
+          </div>
+          <div>
+            <span class="text-[10px] text-slate-400 block">MINOR (kL/b)</span>
+            <span class="text-2xl font-extrabold text-amber-400">13.57</span>
+            <span class="text-[10px] text-amber-300 block">&gt; 12.0 (SLENDER)</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="sim-sec" data-s="5">
+        <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+          <span class="text-xs font-mono text-rose-400 font-bold uppercase tracking-wider">STAGE 05 &bull; BIAXIAL CAPACITY VERIFICATION</span>
+          <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-rose-950 border border-rose-800 text-rose-300">LIMIT: &le; 1.0</span>
+        </div>
+        <h3 class="text-lg sm:text-xl font-extrabold text-white uppercase">Capacity Ratio Demand Check</h3>
+        <p class="text-sm text-slate-300 leading-relaxed">
+          IS 456 Cl. 39.6 interaction verification combining major and minor axis demands:
+        </p>
+        <div class="p-3 bg-rose-950/50 rounded border-2 border-rose-600 font-mono text-center">
+          <span class="text-[10px] text-rose-200 block uppercase">BIAXIAL CAPACITY RATIO (CR)</span>
+          <div class="text-3xl font-black text-rose-400 my-1">1.179</div>
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-rose-900 text-rose-200 inline-block uppercase">
+            NOT ADEQUATE &bull; FAILS CODE CHECK
+          </span>
+        </div>
+      </div>
+
+      <div class="sim-sec" data-s="6">
+        <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+          <span class="text-xs font-mono text-emerald-400 font-bold uppercase tracking-wider">STAGE 06 &bull; RETROFITTING RECTIFICATION</span>
+          <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-950 border border-emerald-800 text-emerald-300">IS 456 PASS</span>
+        </div>
+        <h3 class="text-lg sm:text-xl font-extrabold text-white uppercase">RC Jacketing Pass State</h3>
+        <p class="text-sm text-slate-300 leading-relaxed">
+          Encasement to <strong>380 &times; 380 mm</strong> with new &Oslash;16 mm longitudinal bars and shear dowels restores the member to a short column (slenderness <strong>9.63 &lt; 12</strong>):
+        </p>
+        <div class="p-3 bg-emerald-950/50 rounded border-2 border-emerald-500 font-mono text-center">
+          <span class="text-[10px] text-emerald-200 block uppercase">REVISED CAPACITY RATIO (CR)</span>
+          <div class="text-3xl font-black text-emerald-400 my-1">0.986</div>
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-900 text-emerald-200 inline-block uppercase">
+            DESIGN PASS &bull; CODE COMPLIANT
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var labels = ["Model", "Loads", "Deform", "Slender", "Capacity", "Retrofit"];
+  var caps = [
+    "ETABS model of the G+2 frame, highlighting critical column C7.",
+    "Gravity line loads: 11.96 kN/m (Floors) and 5.52 kN/m (Roof).",
+    "Live wireframe. Drag the slider to simulate sway and beam deflection.",
+    "Slenderness check: Both major (28.53) and minor (13.57) fail the <=12 limit.",
+    "Biaxial interaction check: Capacity Ratio is 1.179 (Overstressed).",
+    "Section enlargement to 380x380 mm drops Capacity Ratio to 0.986 (Pass)."
+  ];
+  var metricTitles = [
+    "STAGE 1: MODEL",
+    "STAGE 2: LOADS",
+    "STAGE 3: DEMAND (ETABS)",
+    "STAGE 4: SLENDERNESS",
+    "STAGE 5: CAPACITY CHECK",
+    "STAGE 6: JACKET RETROFIT"
+  ];
+  var metricValues = [
+    "Section: 230 x 300 mm",
+    "11.96 kN/m (Floors) | 5.52 kN/m (Roof)",
+    "Pu: 536.8 kN | Mu3: 52.28 kNm | Mu2: 18.93 kNm",
+    "Major: 28.53 | Minor: 13.57 (Limit: 12)",
+    "CR: 1.179 (Overstressed > 1.0)",
+    "Section: 380 x 380 mm | CR: 0.986 (PASS)"
+  ];
+
+  var $ = function(i){ return document.getElementById(i); };
+  var st = $("simStage"), steps = $("simSteps"), cap = $("simCap");
+  var sl = $("simSl"), te = $("simTe"), pu = $("simPu"), fr = $("simFr");
+  var mTitle = $("simMetricTitle"), mVal = $("simMetricValue");
+
+  var im = [].slice.call(document.querySelectorAll(".sim-pane > img"));
+  var secs = [].slice.call(document.querySelectorAll(".sim-sec"));
+  var cur = 0, showE = false, lastP = -1;
+
+  labels.forEach(function(n, i){
+    var b = document.createElement("button");
+    b.textContent = n;
+    b.onclick = function(){
+      var offset = (st ? st.getBoundingClientRect().height : 300) + 70;
+      var targetPos = secs[i].getBoundingClientRect().top + window.pageYOffset - offset;
+      window.scrollTo({ top: targetPos, behavior: "smooth" });
+    };
+    steps.appendChild(b);
+  });
+
+  var X = [0, 3.3, 6.6, 9.9, 13.2], Y = [0, 6.35], H = 3.05, S = 21, NS = "http://www.w3.org/2000/svg";
+  function pr(x, y, z){ return [238 + (x - y) * 0.866 * S, 206 + (x + y) * 0.5 * S - z * S]; }
+  function D(x, y, z, f, s){ return pr(x + f * 1.5 * Math.pow(z / 9.15, 1.3), y + f * 0.3 * z / 9.15, z - s); }
+  function mk(t, a){
+    var e = document.createElementNS(NS, t);
+    for (var k in a) e.setAttribute(k, a[k]);
+    fr.appendChild(e);
+    return e;
+  }
+
+  var sp = [1, 2, 3].map(function(){ return mk("polygon", { fill: "rgba(110, 110, 110, 0.28)" }); });
+  var gh = mk("path", { fill: "none", stroke: "#C5CAE9", "stroke-width": 1 });
+  var dp = mk("path", { fill: "none", stroke: "#2F3E9E", "stroke-width": 1.7 });
+  var tx = mk("text", { x: 16, y: 404, "font-size": 13, fill: "#4F5E69", "font-family": "JetBrains Mono, monospace" });
+  tx.textContent = "Deformation exaggerated for clarity";
+
+  function pl(a){ return "M" + a.map(function(p){ return p[0].toFixed(1) + " " + p[1].toFixed(1); }).join("L"); }
+  function path(f){
+    var d = "", i, k, n;
+    X.forEach(function(x){
+      Y.forEach(function(y){
+        d += pl([0, 1, 2, 3].map(function(k){ return D(x, y, k * H, f, 0); }));
+      });
+    });
+    for (k = 0; k < 4; k++){
+      var z = k * H, a = k ? 1 : 0;
+      Y.forEach(function(y){
+        for (i = 0; i < 4; i++) {
+          (function(i){
+            d += pl([0, 1, 2, 3, 4, 5].map(function(n){
+              var t = n / 5;
+              return D(X[i] + (X[i + 1] - X[i]) * t, y, z, f, a * f * 0.28 * Math.sin(Math.PI * t));
+            }));
+          })(i);
+        }
+      });
+      X.forEach(function(x){
+        d += pl([0, 1, 2, 3, 4, 5, 6, 7].map(function(n){
+          var t = n / 7;
+          return D(x, Y[1] * t, z, f, a * f * 0.4 * Math.sin(Math.PI * t));
+        }));
+      });
+    }
+    return d;
+  }
+
+  function draw(f){
+    gh.setAttribute("d", path(0));
+    dp.setAttribute("d", path(f));
+    sp.forEach(function(e, i){
+      e.setAttribute("points", [[0, 0], [13.2, 0], [13.2, 6.35], [0, 6.35]].map(function(c){
+        return D(c[0], c[1], (i + 1) * H, f, 0).join(",");
+      }).join(" "));
+    });
+  }
+
+  function calc(){
+    var P = +pu.value;
+    var m3 = 63.319 + (536.84 - P) * 11.0856 / 394.2311;
+    var r3 = 52.2751 / m3;
+    var r2 = 18.9251 / 53.49;
+    var t = r3 + r2;
+    var k = 328;
+
+    $("simPuv").textContent = P.toFixed(1);
+    $("simB1").setAttribute("width", r3 * k);
+    $("simB2").setAttribute("x", 35 + r3 * k);
+    $("simB2").setAttribute("width", r2 * k);
+    $("simTot").setAttribute("x", 35 + t * k + 14);
+    $("simTot").textContent = t.toFixed(3);
+    $("simTot").style.fill = t > 1 ? "#ef4444" : "#22c55e";
+    $("simL1").textContent = "Major: 52.28 / " + m3.toFixed(2) + " = " + r3.toFixed(3);
+    $("simL2").textContent = "Minor: 18.93 / 53.49 = " + r2.toFixed(3);
+    $("simVd").textContent = t > 1 ? "Demand exceeds capacity: NOT ADEQUATE (OVERSTRESSED)" : "Within safe interaction limit";
+    $("simVd").style.fill = t > 1 ? "#ef4444" : "#22c55e";
+
+    if (cur === 5 && mVal) {
+      mVal.textContent = "Pu: " + P.toFixed(1) + " kN | CR: " + t.toFixed(3) + (t > 1 ? " (FAIL)" : " (PASS)");
+      mVal.style.color = t > 1 ? "#ef4444" : "#22c55e";
+    }
+  }
+
+  function setS(s){
+    cur = s;
+    st.dataset.s = s;
+    cap.textContent = caps[s - 1];
+    if (mTitle) mTitle.textContent = metricTitles[s - 1];
+    if (mVal) {
+      mVal.textContent = metricValues[s - 1];
+      mVal.style.color = s === 4 || s === 5 ? "#ef4444" : (s === 6 ? "#22c55e" : "#38bdf8");
+    }
+    [].forEach.call(steps.children, function(b, i){
+      b.setAttribute("aria-current", i === s - 1);
+    });
+  }
+
+  function frame(){
+    var s = 1;
+    var threshold = (st ? st.getBoundingClientRect().bottom : 300) + 30;
+    secs.forEach(function(e, i){
+      if (e.getBoundingClientRect().top <= threshold) s = i + 1;
+    });
+    if (s !== cur) setS(s);
+
+    if (cur === 3){
+      var r = secs[2].getBoundingClientRect();
+      var p = Math.min(1, Math.max(0, (threshold - r.top) / r.height));
+      if (Math.abs(p - lastP) > 0.002){
+        sl.value = p * 100;
+        lastP = p;
+      }
+    }
+    draw(sl.value / 100);
+
+    im.forEach(function(e, i){
+      e.style.opacity = (cur === 1 && i === 0) || (cur === 2 && i === 1) || (cur === 3 && showE && i === 2) ? 1 : 0;
+    });
+    fr.style.opacity = cur === 3 && !showE ? 1 : 0;
+  }
+
+  sl.addEventListener("input", frame);
+  pu.addEventListener("input", calc);
+  te.onclick = function(){
+    showE = !showE;
+    te.setAttribute("aria-pressed", showE);
+    te.textContent = showE ? "Show live model" : "Show ETABS result";
+    frame();
+  };
+
+  addEventListener("scroll", frame, { passive: true });
+  addEventListener("resize", frame);
+  calc();
+  frame();
+})();
+</script>
 
     <!-- UNDERGRADUATE & INTERNSHIP PROJECTS -->
     <section id="projects" class="space-y-6">
