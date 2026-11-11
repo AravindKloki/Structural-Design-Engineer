@@ -624,23 +624,33 @@
         </div>
 
         <!-- Embedded Frame -->
-        <div id="inlinePdfContainer" class="w-full space-y-2">
-          <div class="w-full h-[650px] sm:h-[750px] rounded border border-slate-800 overflow-hidden bg-slate-950 shadow-2xl">
-            <iframe 
-              id="pdfViewerFrame"
-              src="./Slender%20column%20Calculations.pdf"
-              class="w-full h-full bg-white" 
-              frameborder="0"
-              loading="lazy"
-            ></iframe>
-          </div>
-          <div class="flex flex-wrap items-center justify-between text-[11px] font-mono text-slate-400 pt-1">
-            <span><i class="fa-solid fa-file-pdf text-amber-400 mr-1.5"></i> Document: Slender column Calculations.pdf</span>
-            <span class="text-emerald-400 font-semibold"><i class="fa-solid fa-check mr-1"></i> IS 456:2000 Cl. 25.2 & 39.6 Verified</span>
-          </div>
-        </div>
-
+  <div id="inlinePdfContainer" class="w-full space-y-2">
+  <div class="w-full h-[650px] sm:h-[750px] rounded border border-slate-800 overflow-hidden bg-slate-950 shadow-2xl">
+    <object 
+      data="./Slender%20column%20Calculations.pdf#toolbar=1&navpanes=0" 
+      type="application/pdf" 
+      class="w-full h-full"
+    >
+      <embed 
+        src="./Slender%20column%20Calculations.pdf" 
+        type="application/pdf" 
+        class="w-full h-full" 
+      />
+      <div class="flex flex-col items-center justify-center h-full p-6 text-center space-y-3 bg-[#071324] font-mono">
+        <i class="fa-solid fa-file-pdf text-4xl text-amber-400"></i>
+        <p class="text-sm text-slate-300">Tap below to view the calculations report:</p>
+        <a 
+          href="./Slender%20column%20Calculations.pdf" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="px-4 py-2 rounded bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs"
+        >
+          Open Calculations PDF
+        </a>
       </div>
+    </object>
+  </div>
+</div>
 
       <!-- Comparison Metrics Matrix -->
       <div class="cad-box p-5 rounded-lg overflow-x-auto">
@@ -1205,20 +1215,7 @@
     }
 
     // Inline PDF Viewer Initializer & Toggle
-    function initPdfViewer() {
-      const frame = document.getElementById('pdfViewerFrame');
-      if (!frame) return;
-
-      const relativePdfPath = './Slender%20column%20Calculations.pdf';
-
-      // When hosted live, route through Google Docs Viewer for mobile/browser plugin independence
-      if (window.location.protocol.startsWith('http')) {
-        const fullPdfUrl = new URL(relativePdfPath, window.location.href).href;
-        frame.src = `https://docs.google.com/viewer?url=${encodeURIComponent(fullPdfUrl)}&embedded=true`;
-      } else {
-        frame.src = relativePdfPath;
-      }
-    }
+    
 
     function toggleInlinePdf() {
       const container = document.getElementById('inlinePdfContainer');
