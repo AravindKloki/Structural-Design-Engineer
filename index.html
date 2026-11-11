@@ -107,7 +107,7 @@
       background: #38bdf8;
     }
 
-    /* ===== STACKING DECK STYLES ===== */
+    /* ===== STACKING DECK: DARK BLUEPRINT THEME ===== */
     .stack {
       position: relative;
       width: 100%;
@@ -121,8 +121,8 @@
       margin-bottom: 34vh;
       border-radius: 12px;
       overflow: hidden;
-      background: #081426; /* Dark blueprint base */
-      border: 1px solid #1c365a; /* Matching card border from Image 2 */
+      background: #081426;
+      border: 1px solid #1c365a;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.75);
       transform-origin: 50% 0;
       transition: transform 0.1s ease-out;
@@ -156,8 +156,8 @@
       height: calc(100% - 34px);
       overflow-y: auto;
       padding: 1.25rem;
-      color: #cbd5e1; /* Soft slate text */
-      background: #071324; /* Deep navy blueprint background */
+      color: #cbd5e1;
+      background: #071324;
     }
 
     @media (max-width: 768px) {
@@ -181,7 +181,6 @@
         transition: none !important;
       }
     }
-    
   </style>
 </head>
 <body class="text-slate-200 font-sans antialiased min-h-screen relative flex flex-col justify-between selection:bg-sky-500 selection:text-white pb-24">
@@ -190,7 +189,7 @@
   <header class="sticky top-0 z-40 bg-[#060d17]/95 backdrop-blur border-b border-blueprint-border/80 px-4 sm:px-8 py-3.5 transition-all">
     <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4">
       
-      <!-- Brand & SRM Badge -->
+      <!-- Brand & Badge -->
       <div class="flex items-center gap-3.5">
         <div class="w-9 h-9 rounded border border-sky-500/50 bg-sky-950/60 flex items-center justify-center font-mono font-bold text-sky-400 text-base shadow-sm shadow-sky-500/20">
           Δ
@@ -201,7 +200,7 @@
           </div>
           <div class="flex items-center gap-2 text-[10px] text-slate-400 font-mono tracking-wider">
             <span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-            SRMIST INSTITUTE OF SCIENCE & TECHNOLOGY 
+            SRMIST INSTITUTE OF SCIENCE & TECHNOLOGY
           </div>
         </div>
       </div>
@@ -280,12 +279,12 @@
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 font-mono text-xs text-slate-300">
             <div class="flex items-center gap-3 p-2.5 rounded bg-slate-900/80 border border-blueprint-border hover:border-sky-500/60 transition">
               <i class="fa-solid fa-envelope text-sky-400 text-sm"></i>
-              <a href="mailto:dparavindan@gmail.com" class="hover:text-white truncate">dparavindan@gmail.com</a>[cite: 1]
+              <a href="mailto:dparavindan@gmail.com" class="hover:text-white truncate">dparavindan@gmail.com</a>
             </div>
 
             <div class="flex items-center gap-3 p-2.5 rounded bg-slate-900/80 border border-blueprint-border hover:border-sky-500/60 transition">
               <i class="fa-solid fa-phone text-sky-400 text-sm"></i>
-              <a href="tel:+916385778972" class="hover:text-white">+91 6385778972</a>[cite: 1]
+              <a href="tel:+916385778972" class="hover:text-white">+91 6385778972</a>
             </div>
 
             <div class="flex items-center gap-3 p-2.5 rounded bg-slate-900/80 border border-blueprint-border sm:col-span-2 hover:border-sky-500/60 transition">
@@ -304,7 +303,7 @@
             </button>
             <a href="https://www.linkedin.com/in/aravind-k-aa190a336" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 rounded bg-slate-900 hover:bg-slate-800 text-slate-300 border border-blueprint-border font-mono text-xs transition">
               <i class="fa-brands fa-linkedin text-sky-400 mr-1.5"></i> LinkedIn
-            </a>[cite: 1]
+            </a>
           </div>
         </div>
 
@@ -783,7 +782,20 @@
     </section>
 
     <!-- ===== STACKING DECK SIMULATION SECTION ===== -->
-    <div class="stack">
+    <section id="simulation" class="space-y-6">
+      <div class="cad-box p-5 rounded-lg border-l-4 border-l-sky-500">
+        <div class="text-[11px] font-mono text-sky-400 uppercase tracking-widest font-bold">
+          LIVE STRUCTURAL SIMULATION &bull; SCROLL TO EXPLORE
+        </div>
+        <h2 class="text-xl sm:text-2xl lg:text-3xl font-extrabold text-white uppercase tracking-tight mt-1">
+          From ETABS Model to Retrofit: Column C7 Step by Step
+        </h2>
+        <p class="text-sm text-slate-400 mt-2 max-w-3xl">
+          Scroll through the stacked deck to follow column C7 from original 3D geometry to load application, live sway deformation, code verification failure, and jacketed restoration.
+        </p>
+      </div>
+
+      <div class="stack">
         <!-- CARD 1: MODEL -->
         <article class="card" style="--c:#0c1d36">
           <div class="tab">
@@ -837,7 +849,7 @@
                   <div><span class="text-slate-400 block text-[10px]">ROOF LINE LOAD:</span><strong class="text-sky-400 text-sm">5.52 kN/m</strong></div>
                 </div>
                 <div class="p-3 bg-slate-900/90 rounded border border-slate-800 font-mono text-xs text-slate-300 leading-relaxed">
-                  Analysis under $1.5(\text{DL} + \text{LL})$ combination produces axial load <strong class="text-white">Pu = 536.8 kN</strong>, major moment <strong class="text-rose-400">Mu3 = 52.28 kNm</strong>, and minor moment <strong class="text-amber-400">Mu2 = 18.93 kNm</strong>.
+                  Analysis under 1.5(DL + LL) combination produces axial load <strong class="text-white">Pu = 536.8 kN</strong>, major moment <strong class="text-rose-400">Mu3 = 52.28 kNm</strong>, and minor moment <strong class="text-amber-400">Mu2 = 18.93 kNm</strong>.
                 </div>
               </div>
             </div>
@@ -1051,6 +1063,7 @@
           </div>
         </article>
       </div>
+    </section>
 
     <!-- UNDERGRADUATE & INTERNSHIP PROJECTS -->
     <section id="projects" class="space-y-6">
@@ -1287,13 +1300,13 @@
       <div class="flex flex-wrap justify-center items-center gap-4 pt-2 font-mono text-xs">
         <a href="mailto:dparavindan@gmail.com" class="px-5 py-3 rounded bg-sky-600 hover:bg-sky-500 text-white font-semibold transition flex items-center gap-2">
           <i class="fa-solid fa-envelope"></i> dparavindan@gmail.com
-        </a>[cite: 1]
+        </a>
         <a href="tel:+916385778972" class="px-5 py-3 rounded bg-slate-900 hover:bg-slate-800 text-slate-200 border border-blueprint-border transition flex items-center gap-2">
           <i class="fa-solid fa-phone"></i> +91 6385778972
-        </a>[cite: 1]
+        </a>
         <a href="https://www.linkedin.com/in/aravind-k-aa190a336" target="_blank" rel="noopener noreferrer" class="px-5 py-3 rounded bg-slate-900 hover:bg-slate-800 text-sky-400 border border-blueprint-border transition flex items-center gap-2">
           <i class="fa-brands fa-linkedin"></i> LinkedIn Network
-        </a>[cite: 1]
+        </a>
       </div>
     </section>
 
@@ -1310,16 +1323,16 @@
     <div class="flex items-center gap-2 font-mono text-xs">
       <a href="mailto:dparavindan@gmail.com" class="px-3 py-1.5 rounded bg-sky-600 hover:bg-sky-500 text-white font-semibold transition flex items-center gap-1.5">
         <i class="fa-solid fa-envelope text-[11px]"></i> <span>Email</span>
-      </a>[cite: 1]
+      </a>
       <a href="https://www.linkedin.com/in/aravind-k-aa190a336" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded bg-slate-900 hover:bg-slate-800 text-sky-400 border border-blueprint-border transition flex items-center gap-1.5">
         <i class="fa-brands fa-linkedin text-[11px]"></i> <span>LinkedIn</span>
-      </a>[cite: 1]
+      </a>
       <button onclick="openCalcModal()" class="px-3 py-1.5 rounded bg-slate-900 hover:bg-slate-800 text-emerald-400 border border-emerald-800/80 hover:border-emerald-500 transition flex items-center gap-1.5">
         <i class="fa-solid fa-file-excel text-[11px]"></i> <span>Calc Sheet</span>
       </button>
       <a href="tel:+916385778972" class="px-3 py-1.5 rounded bg-slate-900 hover:bg-slate-800 text-slate-200 border border-blueprint-border transition flex items-center gap-1.5">
         <i class="fa-solid fa-phone text-[11px]"></i> <span>Call</span>
-      </a>[cite: 1]
+      </a>
     </div>
   </aside>
 
@@ -1464,17 +1477,22 @@
 
     // ===== STACKING DECK ENGINE =====
     const cards = [...document.querySelectorAll('.stack .card')];
-    const TOP = 72, STEP = 32;
 
     function applyCardTops() {
-      cards.forEach((c, i) => c.style.top = (TOP + i * STEP) + 'px');
+      const isMobile = window.innerWidth <= 768;
+      const topOffset = isMobile ? 56 : 72;
+      const stepOffset = isMobile ? 28 : 34;
+      cards.forEach((c, i) => c.style.top = (topOffset + i * stepOffset) + 'px');
     }
     applyCardTops();
 
     function stack() {
+      const isMobile = window.innerWidth <= 768;
+      const topOffset = isMobile ? 56 : 72;
+      const stepOffset = isMobile ? 28 : 34;
       const rs = cards.map(c => c.getBoundingClientRect());
       const t = cards.map((c, i) =>
-        Math.min(1, Math.max(0, 1 - (rs[i].top - (TOP + i * STEP)) / (rs[i].height * 0.9)))
+        Math.min(1, Math.max(0, 1 - (rs[i].top - (topOffset + i * stepOffset)) / (rs[i].height * 0.9)))
       );
 
       cards.forEach((c, i) => {
@@ -1507,10 +1525,10 @@
         return e;
       }
 
-      var sp = [1, 2, 3].map(function(){ return mk("polygon", { fill: "rgba(110, 110, 110, 0.28)" }); });
-      var gh = mk("path", { fill: "none", stroke: "#C5CAE9", "stroke-width": 1 });
-      var dp = mk("path", { fill: "none", stroke: "#2F3E9E", "stroke-width": 1.7 });
-      var tx = mk("text", { x: 16, y: 404, "font-size": 13, fill: "#4F5E69", "font-family": "JetBrains Mono, monospace" });
+      var sp = [1, 2, 3].map(function(){ return mk("polygon", { fill: "rgba(56, 189, 248, 0.12)" }); });
+      var gh = mk("path", { fill: "none", stroke: "#334155", "stroke-width": 1 });
+      var dp = mk("path", { fill: "none", stroke: "#38bdf8", "stroke-width": 2 });
+      var tx = mk("text", { x: 16, y: 404, "font-size": 13, fill: "#94a3b8", "font-family": "JetBrains Mono, monospace" });
       tx.textContent = "Deformation exaggerated for clarity";
 
       function pl(a){ return "M" + a.map(function(p){ return p[0].toFixed(1) + " " + p[1].toFixed(1); }).join("L"); }
@@ -1600,13 +1618,13 @@
         if (b2) b2.style.width = Math.min(100, (r2 / 1.5 * 100)) + "%";
         if (tot) {
           tot.textContent = t.toFixed(3);
-          tot.style.color = t > 1.0 ? "#dc2626" : "#16a34a";
+          tot.style.color = t > 1.0 ? "#ef4444" : "#22c55e";
         }
         if (l1) l1.textContent = "Major: 52.28 / " + m3.toFixed(2) + " = " + r3.toFixed(3);
         if (l2) l2.textContent = "Minor: 18.93 / 53.49 = " + r2.toFixed(3);
         if (vd) {
           vd.textContent = t > 1.0 ? "Demand exceeds capacity: NOT ADEQUATE (OVERSTRESSED)" : "Within safe interaction limit (PASS)";
-          vd.style.color = t > 1.0 ? "#dc2626" : "#16a34a";
+          vd.style.color = t > 1.0 ? "#ef4444" : "#22c55e";
         }
       }
 
